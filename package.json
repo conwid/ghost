@@ -22,7 +22,8 @@
     "dev": "DEBUG=ghost:* grunt dev",
     "test": "grunt validate --verbose",
     "setup": "yarn install && knex-migrator init && grunt symlink && grunt init || true",
-    "lint": "grunt lint"
+    "lint": "grunt lint",
+    "postinstall": "patch-package"
   },
   "engines": {
     "node": "^6.9.0 || ^8.9.0",
@@ -87,7 +88,9 @@
     "passport": "0.4.0",
     "passport-http-bearer": "1.0.1",
     "passport-oauth2-client-password": "0.1.2",
+    "patch-package": "^5.1.1",
     "path-match": "1.2.4",
+    "postinstall-postinstall": "^1.0.0",
     "rss": "1.2.2",
     "sanitize-html": "1.18.2",
     "semver": "5.5.0",

@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/gscan/lib/specs/v1.js
++++ b/node_modules/gscan/lib/specs/v1.js
+@@ -19,6 +19,8 @@ knownHelpers = [
+     'log', 'if', 'unless', 'with', 'block', 'contentFor', 'each', 'lookup'
+     // Registering these will break template compile checks
+     // 'blockHelperMissing', 'helperMissing',
++	// Custom
++	,'top','group'
+ ];
+ 
+ templates = [
