@@ -1,6 +1,9 @@
 // # Ghost Startup
 // Orchestrates the startup of Ghost when run from command line.
 
+var appInsights = require('applicationinsights');
+appInsights.setup().start();
+
 var startTime = Date.now(),
     debug = require('ghost-ignition').debug('boot:index'),
     ghost, express, common, urlService, parentApp;
