@@ -4,5 +4,12 @@
 		"connection": {
 			"filename": "content/data/ghost.db"
 		}
+	},
+	"storage": {
+			"active": "ghost-azure-storage",
+			"ghost-azure-storage": {				
+				"container": "assets",				
+				"useHttps" : "true" 
+			}
 	}
 }
