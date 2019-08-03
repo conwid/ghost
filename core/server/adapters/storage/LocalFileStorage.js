@@ -1,7 +1,11 @@
 // # Local File System Image Storage module
 // The (default) module for storing images, using the local file system
 
+<<<<<<< HEAD
 var serveStatic = require('express').static,
+=======
+const serveStatic = require('express').static,
+>>>>>>> newversion/master
     fs = require('fs-extra'),
     path = require('path'),
     Promise = require('bluebird'),
@@ -9,7 +13,11 @@ var serveStatic = require('express').static,
     config = require('../../config'),
     common = require('../../lib/common'),
     constants = require('../../lib/constants'),
+<<<<<<< HEAD
     urlService = require('../../services/url'),
+=======
+    urlUtils = require('../../lib/url-utils'),
+>>>>>>> newversion/master
     StorageBase = require('ghost-storage-base');
 
 class LocalFileStore extends StorageBase {
@@ -20,6 +28,34 @@ class LocalFileStore extends StorageBase {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Saves a buffer in the targetPath
+     * - buffer is an instance of Buffer
+     * - returns a Promise which returns the full URL to retrieve the data
+     */
+    saveRaw(buffer, targetPath) {
+        const storagePath = path.join(this.storagePath, targetPath);
+        const targetDir = path.dirname(storagePath);
+
+        return fs.mkdirs(targetDir)
+            .then(() => {
+                return fs.writeFile(storagePath, buffer);
+            })
+            .then(() => {
+                // For local file system storage can use relative path so add a slash
+                const fullUrl = (
+                    urlUtils.urlJoin('/', urlUtils.getSubdir(),
+                        urlUtils.STATIC_IMAGE_URL_PREFIX,
+                        targetPath)
+                ).replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+
+                return fullUrl;
+            });
+    }
+
+    /**
+>>>>>>> newversion/master
      * Saves the image to storage (the file system)
      * - image is the express image object
      * - returns a promise which ultimately returns the full url to the uploaded image
@@ -29,12 +65,17 @@ class LocalFileStore extends StorageBase {
      * @returns {*}
      */
     save(image, targetDir) {
+<<<<<<< HEAD
         var targetFilename,
             self = this;
+=======
+        let targetFilename;
+>>>>>>> newversion/master
 
         // NOTE: the base implementation of `getTargetDir` returns the format this.storagePath/YYYY/MM
         targetDir = targetDir || this.getTargetDir(this.storagePath);
 
+<<<<<<< HEAD
         return this.getUniqueFileName(image, targetDir).then(function (filename) {
             targetFilename = filename;
             return fs.mkdirs(targetDir);
@@ -51,11 +92,30 @@ class LocalFileStore extends StorageBase {
 
             return fullUrl;
         }).catch(function (e) {
+=======
+        return this.getUniqueFileName(image, targetDir).then((filename) => {
+            targetFilename = filename;
+            return fs.mkdirs(targetDir);
+        }).then(() => {
+            return fs.copy(image.path, targetFilename);
+        }).then(() => {
+            // The src for the image must be in URI format, not a file system path, which in Windows uses \
+            // For local file system storage can use relative path so add a slash
+            const fullUrl = (
+                urlUtils.urlJoin('/', urlUtils.getSubdir(),
+                    urlUtils.STATIC_IMAGE_URL_PREFIX,
+                    path.relative(this.storagePath, targetFilename))
+            ).replace(new RegExp(`\\${path.sep}`, 'g'), '/');
+
+            return fullUrl;
+        }).catch((e) => {
+>>>>>>> newversion/master
             return Promise.reject(e);
         });
     }
 
     exists(fileName, targetDir) {
+<<<<<<< HEAD
         var filePath = path.join(targetDir || this.storagePath, fileName);
 
         return fs.stat(filePath)
@@ -63,6 +123,15 @@ class LocalFileStore extends StorageBase {
                 return true;
             })
             .catch(function () {
+=======
+        const filePath = path.join(targetDir || this.storagePath, fileName);
+
+        return fs.stat(filePath)
+            .then(() => {
+                return true;
+            })
+            .catch(() => {
+>>>>>>> newversion/master
                 return false;
             });
     }
@@ -75,6 +144,7 @@ class LocalFileStore extends StorageBase {
      * @returns {serveStaticContent}
      */
     serve() {
+<<<<<<< HEAD
         var self = this;
 
         return function serveStaticContent(req, res, next) {
@@ -90,6 +160,23 @@ class LocalFileStore extends StorageBase {
                     }
                 }
             )(req, res, function (err) {
+=======
+        const {storagePath} = this;
+
+        return function serveStaticContent(req, res, next) {
+            const startedAtMoment = moment();
+
+            return serveStatic(
+                storagePath,
+                {
+                    maxAge: constants.ONE_YEAR_MS,
+                    fallthrough: false,
+                    onEnd: () => {
+                        common.logging.info('LocalFileStorage.serve', req.path, moment().diff(startedAtMoment, 'ms') + 'ms');
+                    }
+                }
+            )(req, res, (err) => {
+>>>>>>> newversion/master
                 if (err) {
                     if (err.statusCode === 404) {
                         return next(new common.errors.NotFoundError({
@@ -127,10 +214,17 @@ class LocalFileStore extends StorageBase {
         // remove trailing slashes
         options.path = (options.path || '').replace(/\/$|\\$/, '');
 
+<<<<<<< HEAD
         var targetPath = path.join(this.storagePath, options.path);
 
         return new Promise(function (resolve, reject) {
             fs.readFile(targetPath, function (err, bytes) {
+=======
+        const targetPath = path.join(this.storagePath, options.path);
+
+        return new Promise((resolve, reject) => {
+            fs.readFile(targetPath, (err, bytes) => {
+>>>>>>> newversion/master
                 if (err) {
                     if (err.code === 'ENOENT') {
                         return reject(new common.errors.NotFoundError({

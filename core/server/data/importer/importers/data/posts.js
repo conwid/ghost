@@ -100,7 +100,15 @@ class PostsImporter extends BaseImporter {
 
                 // CASE: search through imported data.
                 // EDGE CASE: uppercase tag slug was imported and auto modified
+<<<<<<< HEAD
                 let importedObject = _.find(this.requiredImportedData[tableName], {originalSlug: objectInFile.slug});
+=======
+                let importedObject = null;
+
+                if (objectInFile.id) {
+                    importedObject = _.find(this.requiredImportedData[tableName], {originalId: objectInFile.id});
+                }
+>>>>>>> newversion/master
 
                 if (importedObject) {
                     this.dataToImport[postIndex][targetProperty][index].id = importedObject.id;
@@ -164,6 +172,10 @@ class PostsImporter extends BaseImporter {
 
             // CASE 1: you are importing old editor posts
             // CASE 2: you are importing Koenig Beta posts
+<<<<<<< HEAD
+=======
+            // CASE 3: you are importing Koenig 2.0 posts
+>>>>>>> newversion/master
             if (model.mobiledoc || (model.mobiledoc && model.html && model.html.match(/^<div class="kg-card-markdown">/))) {
                 let mobiledoc;
 
@@ -179,7 +191,12 @@ class PostsImporter extends BaseImporter {
                 }
 
                 mobiledoc.cards.forEach((card) => {
+<<<<<<< HEAD
                     if (card[0] === 'image') {
+=======
+                    // Koenig Beta = imageStyle, Ghost 2.0 Koenig = cardWidth
+                    if (card[0] === 'image' && card[1].imageStyle) {
+>>>>>>> newversion/master
                         card[1].cardWidth = card[1].imageStyle;
                         delete card[1].imageStyle;
                     }

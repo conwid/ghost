@@ -1,9 +1,18 @@
 var common = require('../lib/common'),
     request = require('../lib/request'),
     imageLib = require('../lib/image'),
+<<<<<<< HEAD
     urlService = require('../services/url'),
     settingsCache = require('./settings/cache'),
     schema = require('../data/schema').checks,
+=======
+    urlUtils = require('../lib/url-utils'),
+    urlService = require('../../frontend/services/url'),
+    settingsCache = require('./settings/cache'),
+    schema = require('../data/schema').checks,
+    moment = require('moment'),
+
+>>>>>>> newversion/master
     defaultPostSlugs = [
         'welcome',
         'the-editor',
@@ -22,19 +31,37 @@ function getSlackSettings() {
 }
 
 function ping(post) {
+<<<<<<< HEAD
     var message,
         slackData = {},
         slackSettings = getSlackSettings();
+=======
+    let message,
+        title,
+        author,
+        slackData = {},
+        slackSettings = getSlackSettings(),
+        blogTitle = settingsCache.get('title');
+>>>>>>> newversion/master
 
     // If this is a post, we want to send the link of the post
     if (schema.isPost(post)) {
         message = urlService.getUrlByResourceId(post.id, {absolute: true});
+<<<<<<< HEAD
+=======
+        title = post.title ? post.title : null;
+        author = post.authors ? post.authors[0] : null;
+>>>>>>> newversion/master
     } else {
         message = post.message;
     }
 
     // Quit here if slack integration is not activated
     if (slackSettings && slackSettings.url && slackSettings.url !== '') {
+<<<<<<< HEAD
+=======
+        slackSettings.username = slackSettings.username ? slackSettings.username : 'Ghost';
+>>>>>>> newversion/master
         // Only ping when not a page
         if (post.page) {
             return;
@@ -48,12 +75,65 @@ function ping(post) {
             return;
         }
 
+<<<<<<< HEAD
         slackData = {
             text: message,
             unfurl_links: true,
             icon_url: imageLib.blogIcon.getIconUrl(true),
             username: 'Ghost'
         };
+=======
+        if (schema.isPost(post)) {
+            slackData = {
+                // We are handling the case of test notification here by checking
+                // if it is a post or a test message to check webhook working.
+                text: `Notification from *${blogTitle}* :ghost:`,
+                unfurl_links: true,
+                icon_url: imageLib.blogIcon.getIconUrl(true),
+                username: slackSettings.username,
+                // We don't want to send attachment if it is a test notification.
+                attachments: [
+                    {
+                        fallback: 'Sorry, content cannot be shown.',
+                        title: title,
+                        title_link: message,
+                        author_name: blogTitle,
+                        image_url: post ? urlUtils.urlFor('image', {image: post.feature_image}, true) : null,
+                        color: '#008952',
+                        fields: [
+                            {
+                                title: 'Description',
+                                value: post.custom_excerpt ? post.custom_excerpt : `${post.html.replace(/<[^>]+>/g, '').split('.').slice(0, 3).join('.')}.`,
+                                short: false
+                            }
+                        ]
+                    },
+                    {
+                        fallback: 'Sorry, content cannot be shown.',
+                        color: '#008952',
+                        thumb_url: author ? urlUtils.urlFor('image', {image: author.profile_image}, true) : null,
+                        fields: [
+                            {
+                                title: 'Author',
+                                value: author ? `<${urlService.getUrlByResourceId(author.id, {absolute: true})} | ${author.name}>` : null,
+                                short: true
+                            }
+                        ],
+                        footer: blogTitle,
+                        footer_icon: imageLib.blogIcon.getIconUrl(true),
+                        ts: moment().unix()
+                    }
+                ]
+            };
+        } else {
+            slackData = {
+                text: message,
+                unfurl_links: true,
+                icon_url: imageLib.blogIcon.getIconUrl(true),
+                username: slackSettings.username
+            };
+        }
+>>>>>>> newversion/master
 
         return request(slackSettings.url, {
             body: JSON.stringify(slackData),
@@ -64,7 +144,11 @@ function ping(post) {
             common.logging.error(new common.errors.GhostError({
                 err: err,
                 context: common.i18n.t('errors.services.ping.requestFailed.error', {service: 'slack'}),
+<<<<<<< HEAD
                 help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://docs.ghost.org'})
+=======
+                help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://ghost.org/docs/'})
+>>>>>>> newversion/master
             }));
         });
     }

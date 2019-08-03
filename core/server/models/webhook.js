@@ -7,20 +7,49 @@ let Webhook,
 Webhook = ghostBookshelf.Model.extend({
     tableName: 'webhooks',
 
+<<<<<<< HEAD
+=======
+    defaults() {
+        return {
+            api_version: 'v2',
+            status: 'available'
+        };
+    },
+
+    integration() {
+        return this.belongsTo('Integration');
+    },
+
+>>>>>>> newversion/master
     emitChange: function emitChange(event, options) {
         const eventToTrigger = 'webhook' + '.' + event;
         ghostBookshelf.Model.prototype.emitChange.bind(this)(this, eventToTrigger, options);
     },
 
     onCreated: function onCreated(model, response, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onCreated.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('added', options);
     },
 
     onUpdated: function onUpdated(model, response, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onUpdated.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('edited', options);
     },
 
     onDestroyed: function onDestroyed(model, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onDestroyed.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('deleted', options);
     }
 }, {

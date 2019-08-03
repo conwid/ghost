@@ -6,7 +6,11 @@ var _ = require('lodash'),
     config = require('../../config'),
     common = require('../../lib/common'),
     settingsCache = require('../settings/cache'),
+<<<<<<< HEAD
     urlService = require('../url');
+=======
+    urlUtils = require('../../lib/url-utils');
+>>>>>>> newversion/master
 
 function GhostMailer() {
     var nodemailer = require('nodemailer'),
@@ -39,7 +43,11 @@ GhostMailer.prototype.from = function () {
 
 // Moved it to its own module
 GhostMailer.prototype.getDomain = function () {
+<<<<<<< HEAD
     var domain = urlService.utils.urlFor('home', true).match(new RegExp('^https?://([^/:?#]+)(?:[/:?#]|$)', 'i'));
+=======
+    var domain = urlUtils.urlFor('home', true).match(new RegExp('^https?://([^/:?#]+)(?:[/:?#]|$)', 'i'));
+>>>>>>> newversion/master
     return domain && domain[1];
 };
 
@@ -48,7 +56,11 @@ GhostMailer.prototype.getDomain = function () {
 GhostMailer.prototype.send = function (message) {
     var self = this,
         to,
+<<<<<<< HEAD
         help = common.i18n.t('errors.api.authentication.checkEmailConfigInstructions', {url: 'https://docs.ghost.org/docs/mail-config'}),
+=======
+        help = common.i18n.t('errors.api.authentication.checkEmailConfigInstructions', {url: 'https://ghost.org/docs/concepts/config/#mail'}),
+>>>>>>> newversion/master
         errorMessage = common.i18n.t('errors.mail.failedSendingEmail.error');
 
     // important to clone message as we modify it

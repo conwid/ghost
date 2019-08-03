@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const unidecode = require('unidecode'),
     _ = require('lodash');
 
@@ -35,4 +36,16 @@ module.exports.safe = function safe(string, options) {
     string = string.trim();
 
     return string;
+=======
+const _ = require('lodash');
+const slugify = require('@tryghost/string').slugify;
+
+module.exports.safe = function safe(string, options) {
+    options = options || {};
+    let opts = {requiredChangesOnly: true};
+    if (!_.has(options, 'importing') || !options.importing) {
+        opts.requiredChangesOnly = false;
+    }
+    return slugify(string, opts);
+>>>>>>> newversion/master
 };

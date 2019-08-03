@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 const _ = require('lodash'),
     Promise = require('bluebird'),
     common = require('../../lib/common/index');
+=======
+const _ = require('lodash');
+const Promise = require('bluebird');
+const common = require('../../lib/common');
+const sequence = require('../../lib/promise/sequence');
+>>>>>>> newversion/master
 
 /**
  * Why and when do we have to fetch `authors` by default?
@@ -80,7 +87,15 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
         // NOTE: sending `post.author = {}` was always ignored [unsupported]
         onCreating: function onCreating(model, attrs, options) {
             if (!model.get('author_id')) {
+<<<<<<< HEAD
                 model.set('author_id', this.contextUser(options));
+=======
+                if (model.get('authors')) {
+                    model.set('author_id', model.get('authors')[0].id);
+                } else {
+                    model.set('author_id', this.contextUser(options));
+                }
+>>>>>>> newversion/master
             }
 
             if (!model.get('authors')) {
@@ -96,10 +111,20 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
             return this._handleOptions('onUpdating')(model, attrs, options);
         },
 
+<<<<<<< HEAD
         // NOTE: `post.author` was always ignored [unsupported]
         onSaving: function (model, attrs, options) {
             /**
              * @deprecated: `author`, will be removed in Ghost 3.0
+=======
+        // @NOTE: `post.author` was always ignored [unsupported]
+        // @NOTE: triggered before creating and before updating
+        onSaving: function (model, attrs, options) {
+            const ops = [];
+
+            /**
+             * @deprecated: `author`, will be removed in Ghost 3.0, drop v0.1
+>>>>>>> newversion/master
              */
             model.unset('author');
 
@@ -110,11 +135,55 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
                 });
             }
 
+<<<<<<< HEAD
             // CASE: `post.author_id` has changed
             if (model.hasChanged('author_id')) {
                 // CASE: you don't send `post.authors`
                 // SOLUTION: we have to update the primary author
                 if (!model.get('authors')) {
+=======
+            /**
+             * @NOTE:
+             *
+             * Try to find a user with either id, slug or email if "authors" is present.
+             * Otherwise fallback to owner user.
+             *
+             * You cannot create an author via posts!
+             * Ghost uses the invite flow to create users.
+             */
+            if (model.get('authors')) {
+                ops.push(() => {
+                    return this.matchAuthors(model, options);
+                });
+            }
+
+            ops.push(() => {
+                // CASE: `post.author_id` has changed
+                if (model.hasChanged('author_id')) {
+                    // CASE: you don't send `post.authors`
+                    // SOLUTION: we have to update the primary author
+                    if (!model.get('authors')) {
+                        let existingAuthors = model.related('authors').toJSON();
+
+                        // CASE: override primary author
+                        existingAuthors[0] = {
+                            id: model.get('author_id')
+                        };
+
+                        model.set('authors', existingAuthors);
+                    } else {
+                        // CASE: you send `post.authors` next to `post.author_id`
+                        if (model.get('authors')[0].id !== model.get('author_id')) {
+                            model.set('author_id', model.get('authors')[0].id);
+                        }
+                    }
+                }
+
+                // CASE: if you change `post.author_id`, we have to update the primary author
+                // CASE: if the `author_id` has change and you pass `posts.authors`, we already check above that
+                //       the primary author id must be equal
+                if (model.hasChanged('author_id') && !model.get('authors')) {
+>>>>>>> newversion/master
                     let existingAuthors = model.related('authors').toJSON();
 
                     // CASE: override primary author
@@ -123,6 +192,7 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
                     };
 
                     model.set('authors', existingAuthors);
+<<<<<<< HEAD
                 } else {
                     // CASE: you send `post.authors` next to `post.author_id`
                     if (model.get('authors')[0].id !== model.get('author_id')) {
@@ -149,11 +219,25 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
             }
 
             return proto.onSaving.call(this, model, attrs, options);
+=======
+                } else if (model.get('authors') && model.get('authors').length) {
+                    // ensure we update the primary author id
+                    model.set('author_id', model.get('authors')[0].id);
+                }
+
+                return proto.onSaving.call(this, model, attrs, options);
+            });
+
+            return sequence(ops);
+>>>>>>> newversion/master
         },
 
         serialize: function serialize(options) {
             const authors = this.related('authors');
+<<<<<<< HEAD
 
+=======
+>>>>>>> newversion/master
             let attrs = proto.serialize.call(this, options);
 
             // CASE: e.g. you stub model response in the test
@@ -177,6 +261,10 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
                 delete attrs.author_id;
             } else {
                 // CASE: we return `post.author=id` with or without requested columns.
+<<<<<<< HEAD
+=======
+                // @NOTE: this serialization should be moved into api layer, it's not being moved as it's deprecated
+>>>>>>> newversion/master
                 if (!options.columns || (options.columns && options.columns.indexOf('author') !== -1)) {
                     attrs.author = attrs.author_id;
                     delete attrs.author_id;
@@ -190,7 +278,11 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
 
             // If the current column settings allow it...
             if (!options.columns || (options.columns && options.columns.indexOf('primary_author') > -1)) {
+<<<<<<< HEAD
                 // ... attach a computed property of primary_author which is the first tag
+=======
+                // ... attach a computed property of primary_author which is the first author
+>>>>>>> newversion/master
                 if (attrs.authors && attrs.authors.length) {
                     attrs.primary_author = attrs.authors[0];
                 } else {
@@ -199,6 +291,67 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
             }
 
             return attrs;
+<<<<<<< HEAD
+=======
+        },
+
+        /**
+         * Authors relation is special. You cannot add new authors via relations.
+         * But you can for the tags relation. That's why we have to sort this out before
+         * we trigger bookshelf-relations.
+         *
+         * @TODO: Add a feature to bookshelf-relations to configure if relations can be added or should be matched only.
+         */
+        matchAuthors(model, options) {
+            let ownerUser;
+            const ops = [];
+
+            ops.push(() => {
+                return ghostBookshelf
+                    .model('User')
+                    .getOwnerUser(Object.assign({}, _.pick(options, 'transacting')))
+                    .then((_ownerUser) => {
+                        ownerUser = _ownerUser;
+                    });
+            });
+
+            ops.push(() => {
+                const authors = model.get('authors');
+                const authorsToSet = [];
+
+                return Promise.each(authors, (author, index) => {
+                    const query = {};
+
+                    if (author.id) {
+                        query.id = author.id;
+                    } else if (author.slug) {
+                        query.slug = author.slug;
+                    } else if (author.email) {
+                        query.email = author.email;
+                    }
+
+                    return ghostBookshelf
+                        .model('User')
+                        .where(query)
+                        .fetch(Object.assign({columns: ['id']}, _.pick(options, 'transacting')))
+                        .then((user) => {
+                            let userId = user ? user.id : ownerUser.id;
+
+                            // CASE: avoid attaching duplicate authors relation
+                            const userExists = _.find(authorsToSet, {id: userId.id});
+
+                            if (!userExists) {
+                                authorsToSet[index] = {};
+                                authorsToSet[index].id = userId;
+                            }
+                        });
+                }).then(() => {
+                    model.set('authors', authorsToSet);
+                });
+            });
+
+            return sequence(ops);
+>>>>>>> newversion/master
         }
     }, {
         /**
@@ -246,11 +399,18 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
             return destroyPost();
         },
 
+<<<<<<< HEAD
         permissible: function permissible(postModelOrId, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission) {
             var self = this,
                 postModel = postModelOrId,
                 origArgs, isContributor, isAuthor, isEdit, isAdd, isDestroy,
                 result = {};
+=======
+        permissible: function permissible(postModelOrId, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission, hasApiKeyPermission) {
+            var self = this,
+                postModel = postModelOrId,
+                origArgs, isContributor, isAuthor, isEdit, isAdd, isDestroy;
+>>>>>>> newversion/master
 
             // If we passed in an id instead of a model, get the model
             // then check the permissions
@@ -314,6 +474,7 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
                 return isCorrectOwner;
             }
 
+<<<<<<< HEAD
             function isCurrentOwner() {
                 return context.user === postModel.related('authors').models[0].id;
             }
@@ -341,6 +502,31 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
             }
 
             if (hasUserPermission && hasAppPermission) {
+=======
+            function isPrimaryAuthor() {
+                return (context.user === postModel.related('authors').models[0].id);
+            }
+
+            function isCoAuthor() {
+                return postModel.related('authors').models.map(author => author.id).includes(context.user);
+            }
+
+            if (isContributor && isEdit) {
+                hasUserPermission = !isChanging('author_id') && !isChangingAuthors() && isCoAuthor();
+            } else if (isContributor && isAdd) {
+                hasUserPermission = isOwner();
+            } else if (isContributor && isDestroy) {
+                hasUserPermission = isPrimaryAuthor();
+            } else if (isAuthor && isEdit) {
+                hasUserPermission = isCoAuthor() && !isChanging('author_id') && !isChangingAuthors();
+            } else if (isAuthor && isAdd) {
+                hasUserPermission = isOwner();
+            } else if (postModel) {
+                hasUserPermission = hasUserPermission || isPrimaryAuthor();
+            }
+
+            if (hasUserPermission && hasApiKeyPermission && hasAppPermission) {
+>>>>>>> newversion/master
                 return Post.permissible.call(
                     this,
                     postModelOrId,
@@ -349,8 +535,24 @@ module.exports.extendModel = function extendModel(Post, Posts, ghostBookshelf) {
                     loadedPermissions,
                     hasUserPermission,
                     hasAppPermission,
+<<<<<<< HEAD
                     result
                 );
+=======
+                    hasApiKeyPermission
+                ).then(({excludedAttrs}) => {
+                    // @TODO: we need a concept for making a diff between incoming authors and existing authors
+                    // @TODO: for now we simply re-use the new concept of `excludedAttrs`
+                    // We only check the primary author of `authors`, any other change will be ignored.
+                    // By this we can deprecate `author_id` more easily.
+                    if (isContributor || isAuthor) {
+                        return {
+                            excludedAttrs: ['authors'].concat(excludedAttrs)
+                        };
+                    }
+                    return {excludedAttrs};
+                });
+>>>>>>> newversion/master
             }
 
             return Promise.reject(new common.errors.NoPermissionError({

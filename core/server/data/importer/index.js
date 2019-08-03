@@ -31,8 +31,13 @@ defaults = {
 function ImportManager() {
     this.importers = [ImageImporter, DataImporter];
     this.handlers = [ImageHandler, JSONHandler, MarkdownHandler];
+<<<<<<< HEAD
     // Keep track of files to cleanup at the end
     this.filesToDelete = [];
+=======
+    // Keep track of file to cleanup at the end
+    this.fileToDelete = null;
+>>>>>>> newversion/master
 }
 
 /**
@@ -102,6 +107,7 @@ _.extend(ImportManager.prototype, {
      * @returns {Function}
      */
     cleanUp: function () {
+<<<<<<< HEAD
         var filesToDelete = this.filesToDelete;
         return function (result) {
             _.each(filesToDelete, function (fileToDelete) {
@@ -118,6 +124,25 @@ _.extend(ImportManager.prototype, {
 
             return result;
         };
+=======
+        var self = this;
+
+        if (self.fileToDelete === null) {
+            return;
+        }
+
+        fs.remove(self.fileToDelete, function (err) {
+            if (err) {
+                common.logging.error(new common.errors.GhostError({
+                    err: err,
+                    context: common.i18n.t('errors.data.importer.index.couldNotCleanUpFile.error'),
+                    help: common.i18n.t('errors.data.importer.index.couldNotCleanUpFile.context')
+                }));
+            }
+
+            self.fileToDelete = null;
+        });
+>>>>>>> newversion/master
     },
     /**
      * Return true if the given file is a Zip
@@ -168,8 +193,14 @@ _.extend(ImportManager.prototype, {
      * @returns {Promise[]} Files
      */
     extractZip: function (filePath) {
+<<<<<<< HEAD
         var tmpDir = path.join(os.tmpdir(), uuid.v4());
         this.filesToDelete.push(tmpDir);
+=======
+        const tmpDir = path.join(os.tmpdir(), uuid.v4());
+        this.fileToDelete = tmpDir;
+
+>>>>>>> newversion/master
         return Promise.promisify(extract)(filePath, {dir: tmpDir}).then(function () {
             return tmpDir;
         });
@@ -233,7 +264,11 @@ _.extend(ImportManager.prototype, {
             baseDir = self.getBaseDirectory(zipDirectory);
 
             _.each(self.handlers, function (handler) {
+<<<<<<< HEAD
                 if (importData.hasOwnProperty(handler.type)) {
+=======
+                if (Object.prototype.hasOwnProperty.call(importData, handler.type)) {
+>>>>>>> newversion/master
                     // This limitation is here to reduce the complexity of the importer for now
                     return Promise.reject(new common.errors.UnsupportedMediaTypeError({
                         message: common.i18n.t('errors.data.importer.index.zipContainsMultipleDataFormats')
@@ -293,9 +328,12 @@ _.extend(ImportManager.prototype, {
     loadFile: function (file) {
         var self = this,
             ext = path.extname(file.name).toLowerCase();
+<<<<<<< HEAD
 
         this.filesToDelete.push(file.path);
 
+=======
+>>>>>>> newversion/master
         return this.isZip(ext) ? self.processZip(file) : self.processFile(file, ext);
     },
     /**
@@ -327,7 +365,11 @@ _.extend(ImportManager.prototype, {
         importOptions = importOptions || {};
         var ops = [];
         _.each(this.importers, function (importer) {
+<<<<<<< HEAD
             if (importData.hasOwnProperty(importer.type)) {
+=======
+            if (Object.prototype.hasOwnProperty.call(importData, importer.type)) {
+>>>>>>> newversion/master
                 ops.push(function () {
                     return importer.doImport(importData[importer.type], importOptions);
                 });
@@ -367,10 +409,15 @@ _.extend(ImportManager.prototype, {
             return self.doImport(importData, importOptions);
         }).then(function (importData) {
             // Step 4: Report on the import
+<<<<<<< HEAD
             return self.generateReport(importData)
             // Step 5: Cleanup any files
                 .finally(self.cleanUp());
         });
+=======
+            return self.generateReport(importData);
+        }).finally(() => self.cleanUp()); // Step 5: Cleanup any files
+>>>>>>> newversion/master
     }
 });
 

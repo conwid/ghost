@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const _ = require('lodash'),
     api = require('../../api'),
     helpers = require('../../helpers/register'),
@@ -76,10 +77,23 @@ generateProxyFunctions = function (name, permissions, isInternal) {
         helpers: {
             register: checkRegisterPermissions('helpers', helpers.registerThemeHelper.bind(helpers)),
             registerAsync: checkRegisterPermissions('helpers', helpers.registerAsyncThemeHelper.bind(helpers))
+=======
+const helpers = require('../../../frontend/helpers/register');
+const routingService = require('../../../frontend/services/routing');
+
+module.exports.getInstance = function getInstance() {
+    const appRouter = routingService.registry.getRouter('appRouter');
+
+    return {
+        helpers: {
+            register: helpers.registerThemeHelper.bind(helpers),
+            registerAsync: helpers.registerAsyncThemeHelper.bind(helpers)
+>>>>>>> newversion/master
         },
         // Expose the route service...
         routeService: {
             // This allows for mounting an entirely new Router at a path...
+<<<<<<< HEAD
             registerRouter: checkRegisterPermissions('routes', appRouter.mountRouter.bind(appRouter))
         },
         // Mini proxy to the API - needs review
@@ -115,3 +129,9 @@ function AppProxy(options) {
 }
 
 module.exports = AppProxy;
+=======
+            registerRouter: appRouter.mountRouter.bind(appRouter)
+        }
+    };
+};
+>>>>>>> newversion/master

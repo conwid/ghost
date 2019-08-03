@@ -15,7 +15,11 @@
                     "checkEmailForInstructions": "Check your email for further instructions.",
                     "passwordChanged": "Password changed successfully.",
                     "invitationAccepted": "Invitation accepted.",
+<<<<<<< HEAD
                     "yourNewGhostBlog": "Your New Ghost Blog"
+=======
+                    "yourNewGhostBlog": "Your New Ghost Site"
+>>>>>>> newversion/master
                 }
             },
             "mail": {
@@ -28,20 +32,32 @@
             },
             "clients": {
                 "clientNotFound": "Client not found"
+<<<<<<< HEAD
+=======
+            },
+            "actions": {
+                "images": {
+                    "upload": "upload image"
+                }
+>>>>>>> newversion/master
             }
         }
     },
     "errors": {
         "apps": {
+<<<<<<< HEAD
             "failedToParseActiveAppsSettings": {
                 "error": "Failed to parse active_apps setting value: {message}",
                 "context": "Your apps will not be loaded.",
                 "help": "Check your settings table for typos in the active_apps value. It should look like: [\"app-1\", \"app2\"] (double quotes required)."
             },
+=======
+>>>>>>> newversion/master
             "appWillNotBeLoaded": {
                 "error": "The app will not be loaded",
                 "help": "Check with the app creator, or read the app documentation for more details on app requirements"
             },
+<<<<<<< HEAD
             "permissionsErrorLoadingApp": {
                 "error": "Error loading app named {name}; problem reading permissions: {message}"
             },
@@ -62,6 +78,13 @@
             },
             "unsafeAppRequire": {
                 "error": "Unsafe App require: {msg}"
+=======
+            "noActivateMethodLoadingApp": {
+                "error": "Error loading app named {name}; no activate() method defined."
+            },
+            "mustProvideAppName": {
+                "error": "Must provide an app name for api context"
+>>>>>>> newversion/master
             }
         },
         "middleware": {
@@ -69,12 +92,38 @@
                 "versionMismatch": "Client request for {clientVersion} does not match server version {serverVersion}."
             },
             "auth": {
+<<<<<<< HEAD
+=======
+                "publicAPIDisabled": {
+                    "error": "Permission error! Public API is disabled.",
+                    "context": "Please enable the deprecated v0.1 Public API or switch to using the v2 Content API."
+                },
+>>>>>>> newversion/master
                 "clientAuthenticationFailed": "Client Authentication Failed",
                 "clientCredentialsNotProvided": "Client credentials were not provided",
                 "clientCredentialsNotValid": "Client credentials were not valid",
                 "forInformationRead": "For information on how to fix this, please read {url}.",
+<<<<<<< HEAD
                 "accessDenied": "Access denied.",
                 "pleaseSignIn": "Please Sign In"
+=======
+                "unknownOrigin": "Could not determine origin of request. Please ensure an Origin or Referrer header is present.",
+                "mismatchedOrigin": "Request made from incorrect origin. Expected '{expected}' received '{actual}'.",
+                "missingUserIDForSession": "Cannot create session without user id.",
+                "accessDenied": "Access denied.",
+                "pleaseSignIn": "Please Sign In",
+                "authorizationFailed": "Authorization failed",
+                "missingContentMemberOrIntegration": "Unable to determine the authenticated member or integration. Check the supplied Content API Key and ensure cookies are being passed through if member auth is failing.",
+                "missingAdminUserOrIntegration": "Unable to determine the authenticated user or integration. Check that cookies are being passed through if using session authentication.",
+                "adminApiKeyMissing": "Admin API Token missing kid header claim.",
+                "unknownAdminApiKey": "Unknown Admin API Key",
+                "unknownContentApiKey": "Unknown Content API Key",
+                "adminApiKidMissing": "Admin API kid missing.",
+                "invalidApiKeyType": "Invalid API Key type",
+                "invalidToken": "Invalid token",
+                "invalidTokenWithMessage": "Invalid token: {message}",
+                "incorrectAuthHeaderFormat": "Authorization header format is \"Authorization: Ghost [token]\""
+>>>>>>> newversion/master
             },
             "oauth": {
                 "invalidClient": "Invalid client.",
@@ -124,6 +173,12 @@
             "blogIcon": {
                 "error": "Could not fetch icon dimensions."
             },
+<<<<<<< HEAD
+=======
+            "images": {
+                "invalidDimensions": "Could not fetch image dimensions."
+            },
+>>>>>>> newversion/master
             "redirectsWrongFormat": "Incorrect redirects file format."
         },
         "config": {
@@ -202,9 +257,21 @@
             "reason": " Reason: {reason}."
         },
         "models": {
+<<<<<<< HEAD
             "subscriber": {
                 "notEnoughPermission": "You do not have permission to perform this action"
             },
+=======
+            "general": {
+                "sql": "Could not understand request."
+            },
+            "subscriber": {
+                "notEnoughPermission": "You do not have permission to perform this action"
+            },
+            "invite": {
+                "notEnoughPermission": "You do not have permission to perform this action"
+            },
+>>>>>>> newversion/master
             "post": {
                 "postNotFound": "Post not found.",
                 "untitled": "(Untitled)",
@@ -252,7 +319,15 @@
                 "userNotFound": "User not found",
                 "ownerNotFound": "Owner not found",
                 "onlyOwnerCanTransferOwnerRole": "Only owners are able to transfer the owner role.",
+<<<<<<< HEAD
                 "onlyAdmCanBeAssignedOwnerRole": "Only administrators can be assigned the owner role."
+=======
+                "onlyAdmCanBeAssignedOwnerRole": "Only administrators can be assigned the owner role.",
+                "onlyActiveAdmCanBeAssignedOwnerRole": "Only active administrators can be assigned the owner role."
+            },
+            "api_key": {
+                "apiKeyNotFound": "API Key not found"
+>>>>>>> newversion/master
             },
             "base": {
                 "index": {
@@ -282,7 +357,11 @@
         },
         "updateCheck": {
             "checkingForUpdatesFailed": {
+<<<<<<< HEAD
                 "error": "Checking for updates failed, your blog will continue to function.",
+=======
+                "error": "Checking for updates failed, your site will continue to function.",
+>>>>>>> newversion/master
                 "help": "If you get this error repeatedly, please seek help from {url}."
             },
             "unableToDecodeUpdateResponse": {
@@ -291,7 +370,12 @@
         },
         "api": {
             "common": {
+<<<<<<< HEAD
                 "invalidTokenStructure": "Invalid token structure"
+=======
+                "invalidTokenStructure": "Invalid token structure",
+                "notImplemented": "The server does not support the functionality required to fulfill the request."
+>>>>>>> newversion/master
             },
             "authentication": {
                 "setupUnableToRun": "Database missing fixture data. Please reset database and try again.",
@@ -302,10 +386,17 @@
                 "noNameProvided": "No name provided.",
                 "invalidEmailReceived": "The server did not receive a valid email",
                 "setupAlreadyCompleted": "Setup has already been completed.",
+<<<<<<< HEAD
                 "unableToSendWelcomeEmail": "Unable to send welcome email, your blog will continue to function.",
                 "checkEmailConfigInstructions": "Please see {url} for instructions on configuring email.",
                 "notLoggedIn": "You are not logged in.",
                 "notTheBlogOwner": "You are not the blog owner.",
+=======
+                "unableToSendWelcomeEmail": "Unable to send welcome email, your site will continue to function.",
+                "checkEmailConfigInstructions": "Please see {url} for instructions on configuring email.",
+                "notLoggedIn": "You are not logged in.",
+                "notTheBlogOwner": "You are not the site owner.",
+>>>>>>> newversion/master
                 "invalidTokenTypeHint": "Invalid token_type_hint given.",
                 "invalidTokenProvided": "Invalid token provided",
                 "tokenRevocationFailed": "Token revocation failed"
@@ -336,6 +427,15 @@
             "posts": {
                 "postNotFound": "Post not found."
             },
+<<<<<<< HEAD
+=======
+            "authors": {
+                "notFound": "Author not found."
+            },
+            "pages": {
+                "pageNotFound": "Page not found."
+            },
+>>>>>>> newversion/master
             "job": {
                 "notFound": "Job not found.",
                 "publishInThePast": "Use the force flag to publish a post in the past."
@@ -344,6 +444,12 @@
                 "missingFile": "Please select a JSON file.",
                 "invalidFile": "Please select a valid JSON file to import."
             },
+<<<<<<< HEAD
+=======
+            "resource": {
+                "resourceNotFound": "{resource} not found."
+            },
+>>>>>>> newversion/master
             "routes": {
                 "missingFile": "Please select a YAML file.",
                 "invalidFile": "Please select a valid YAML file to import."
@@ -371,6 +477,13 @@
                 "subscriberNotFound": "Subscriber not found.",
                 "subscriberAlreadyExists": "Email address is already subscribed."
             },
+<<<<<<< HEAD
+=======
+            "members": {
+                "memberNotFound": "Member not found.",
+                "memberAlreadyExists": "Email address is already member."
+            },
+>>>>>>> newversion/master
             "tags": {
                 "tagNotFound": "Tag not found."
             },
@@ -388,11 +501,20 @@
             },
             "images": {
                 "missingFile": "Please select an image.",
+<<<<<<< HEAD
                 "invalidFile": "Please select a valid image."
             },
             "icons": {
                 "missingFile": "Please select an icon.",
                 "invalidFile": "Blog icon must be a square .ico or .png file between 60px – 1,000px, under 100kb.",
+=======
+                "invalidFile": "Please select a valid image.",
+                "isNotSquare": "Please select a valid image file with square dimensions."
+            },
+            "icons": {
+                "missingFile": "Please select an icon.",
+                "invalidFile": "Icon must be a square .ico or .png file between 60px – 1,000px, under 100kb.",
+>>>>>>> newversion/master
                 "couldNotGetSize": "Couldn/'t get icon dimensions"
             },
             "users": {
@@ -427,11 +549,41 @@
                 "notAllowedToInvite": "Not allowed to invite this role."
             },
             "webhooks": {
+<<<<<<< HEAD
                 "webhookAlreadyExists": "A webhook for requested event with supplied target_url already exists."
+=======
+                "webhookAlreadyExists": "Target URL has already been used for this event."
+>>>>>>> newversion/master
             },
             "oembed": {
                 "noUrlProvided": "No url provided.",
                 "unknownProvider": "No provider found for supplied URL."
+<<<<<<< HEAD
+=======
+            },
+            "userMessages": {
+                "InternalServerError": "Internal server error, cannot {action}.",
+                "IncorrectUsageError": "Incorrect usage error, cannot {action}.",
+                "NotFoundError": "Resource not found error, cannot {action}.",
+                "BadRequestError": "Request not understood error, cannot {action}.",
+                "UnauthorizedError": "Authorisation error, cannot {action}.",
+                "NoPermissionError": "Permission error, cannot {action}.",
+                "ValidationError": "Validation error, cannot {action}.",
+                "UnsupportedMediaTypeError": "Unsupported media error, cannot {action}.",
+                "TooManyRequestsError": "Too many requests error, cannot {action}.",
+                "MaintenanceError": "Server down for maintenance, cannot {action}.",
+                "MethodNotAllowedError": "Method not allowed, cannot {action}.",
+                "RequestEntityTooLargeError": "Request too large, cannot {action}.",
+                "TokenRevocationError": "Token is not available, cannot {action}.",
+                "VersionMismatchError": "Version mismatch error, cannot {action}.",
+                "DataExportError": "Error exporting content.",
+                "DataImportError": "Duplicated entry, cannot save {action}.",
+                "DatabaseVersionError": "Database version compatibility error, cannot {action}.",
+                "EmailError": "Error sending email!",
+                "ThemeValidationError": "Theme validation error, cannot {action}.",
+                "DisabledFeatureError": "Theme validation error, the {{{helperName}}} helper is not available. Cannot {action}.",
+                "UpdateCollisionError": "Saving failed! Someone else is editing this post."
+>>>>>>> newversion/master
             }
         },
         "data": {
@@ -453,7 +605,11 @@
                 "index": {
                     "couldNotCleanUpFile": {
                         "error": "Import could not clean up file ",
+<<<<<<< HEAD
                         "context": "Your blog will continue to work as expected"
+=======
+                        "context": "Your site will continue to work as expected"
+>>>>>>> newversion/master
                     },
                     "unsupportedRoonExport": "Your zip file looks like an old format Roon export, please re-export your Roon blog and try again.",
                     "noContentToImport": "Zip did not include any content to import.",
@@ -474,7 +630,11 @@
         "services": {
             "ping": {
                 "requestFailed": {
+<<<<<<< HEAD
                     "error": "The {service} service was unable to send a ping request, your blog will continue to function.",
+=======
+                    "error": "The {service} service was unable to send a ping request, your site will continue to function.",
+>>>>>>> newversion/master
                     "help": "If you get this error repeatedly, please seek help on {url}."
                 }
             },
@@ -496,7 +656,11 @@
             "unknownErrorOccurred": "An unknown error occurred.",
             "unknownError": "Unknown Error",
             "unknownApiError": "Unknown API Error",
+<<<<<<< HEAD
             "databaseIsReadOnly": "Your database is in read only mode. Visitors can read your blog, but you can't log in or add posts.",
+=======
+            "databaseIsReadOnly": "Your database is in read only mode. Visitors can read your site, but you can't log in or add posts.",
+>>>>>>> newversion/master
             "checkDatabase": "Check your database file and make sure that file owner and permissions are correct.",
             "notEnoughPermission": "You do not have permission to perform this action",
             "errorWhilstRenderingError": "Error whilst rendering error page",
@@ -527,7 +691,15 @@
                 "iteratorNeeded": "Need to pass an iterator to #foreach"
             },
             "get": {
+<<<<<<< HEAD
                 "invalidResource": "Invalid resource given to get helper"
+=======
+                "invalidResource": "Invalid resource given to get helper",
+                "apiRequired": {
+                    "message": "The \\{\\{#get\\}\\} helper requires your theme to have API access.",
+                    "context": "Please enable the v2 API via your theme's package.json file."
+                }
+>>>>>>> newversion/master
             },
             "has": {
                 "invalidAttribute": "Invalid or no attribute given to has helper"
@@ -547,7 +719,11 @@
                 "isDeprecated": "Warning: pageUrl is deprecated, please use page_url instead\nThe helper pageUrl has been replaced with page_url in Ghost 0.4.2, and will be removed entirely in Ghost 0.6\nIn your theme's pagination.hbs file, pageUrl should be renamed to page_url"
             },
             "pagination": {
+<<<<<<< HEAD
                 "invalidData": "The \\{\\{pagination\\}\\} helper was used outside of a paginated context. See https://themes.ghost.org/docs/pagination.",
+=======
+                "invalidData": "The \\{\\{pagination\\}\\} helper was used outside of a paginated context. See https://ghost.org/docs/api/handlebars-themes/helpers/pagination/.",
+>>>>>>> newversion/master
                 "valuesMustBeDefined": "All values must be defined for page, pages, limit and total",
                 "nextPrevValuesMustBeNumeric": "Invalid value, Next/Prev must be a number",
                 "valuesMustBeNumeric": "Invalid value, check page, pages, limit and total are numbers"
@@ -571,13 +747,21 @@
         "httpServer": {
             "cantTouchThis": "Can't touch this",
             "ghostIsRunning": "Ghost is running...",
+<<<<<<< HEAD
             "yourBlogIsAvailableOn": "Your blog is now available on {url}",
+=======
+            "yourBlogIsAvailableOn": "Your site is now available on {url}",
+>>>>>>> newversion/master
             "ctrlCToShutDown": "Ctrl+C to shut down",
             "ghostIsRunningIn": "Ghost is running in {env}...",
             "listeningOn": "Listening on: {host}:{port}",
             "urlConfiguredAs": "Url configured as: {url}",
             "ghostHasShutdown": "Ghost has shut down",
+<<<<<<< HEAD
             "yourBlogIsNowOffline": "Your blog is now offline",
+=======
+            "yourBlogIsNowOffline": "Your site is now offline",
+>>>>>>> newversion/master
             "ghostWasRunningFor": "Ghost was running for",
             "ghostIsClosingConnections": "Ghost is closing connections"
         },
@@ -606,6 +790,10 @@
                     "valueIsNotInteger": "Value in [{tableName}.{columnKey}] is not an integer.",
                     "themeCannotBeActivated": "{themeName} cannot be activated because it is not currently installed.",
                     "validationFailed": "Validation ({validationName}) failed for {key}",
+<<<<<<< HEAD
+=======
+                    "schemaValidationFailed": "Validation failed for '{key}'",
+>>>>>>> newversion/master
                     "validationFailedTypes": {
                         "isLength": "Value in [{tableName}.{key}] exceeds maximum length of {max} characters."
                     }

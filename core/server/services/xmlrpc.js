@@ -1,7 +1,11 @@
 var _ = require('lodash'),
     xml = require('xml'),
     config = require('../config'),
+<<<<<<< HEAD
     urlService = require('../services/url'),
+=======
+    urlService = require('../../frontend/services/url'),
+>>>>>>> newversion/master
     common = require('../lib/common'),
     request = require('../lib/request'),
     settingsCache = require('./settings/cache'),
@@ -18,10 +22,14 @@ var _ = require('lodash'),
     // ToDo: Make this configurable
     pingList = [
         {
+<<<<<<< HEAD
             url: 'blogsearch.google.com/ping/RPC2'
         },
         {
             url: 'rpc.pingomatic.com'
+=======
+            url: 'http://rpc.pingomatic.com'
+>>>>>>> newversion/master
         }
     ];
 
@@ -45,7 +53,11 @@ function ping(post) {
     // Build XML object.
     pingXML = xml({
         methodCall: [{
+<<<<<<< HEAD
             methodName: 'weblogUpdate.ping'
+=======
+            methodName: 'weblogUpdates.ping'
+>>>>>>> newversion/master
         }, {
             params: [{
                 param: [{
@@ -70,13 +82,31 @@ function ping(post) {
             timeout: 2 * 1000
         };
 
+<<<<<<< HEAD
         request(pingHost.url, options)
+=======
+        const goodResponse = /<member>[\s]*<name>flerror<\/name>[\s]*<value>[\s]*<boolean>0<\/boolean><\/value><\/member>/;
+        const errorMessage = /<name>(?:faultString|message)<\/name>[\s]*<value>[\s]*<string>([^<]+)/;
+
+        request(pingHost.url, options)
+            .then(function (res) {
+                if (!goodResponse.test(res.body)) {
+                    const matches = res.body.match(errorMessage);
+                    const message = matches ? matches[1] : res.body;
+                    throw new Error(message);
+                }
+            })
+>>>>>>> newversion/master
             .catch(function (err) {
                 common.logging.error(new common.errors.GhostError({
                     err: err,
                     message: err.message,
                     context: common.i18n.t('errors.services.ping.requestFailed.error', {service: 'xmlrpc'}),
+<<<<<<< HEAD
                     help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://docs.ghost.org'})
+=======
+                    help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://ghost.org/docs/'})
+>>>>>>> newversion/master
                 }));
             });
     });

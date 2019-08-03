@@ -6,12 +6,19 @@ var schema = require('../schema').tables,
     Promise = require('bluebird'),
     common = require('../../lib/common'),
     settingsCache = require('../../services/settings/cache'),
+<<<<<<< HEAD
     urlService = require('../../services/url'),
+=======
+    urlUtils = require('../../lib/url-utils'),
+>>>>>>> newversion/master
 
     validatePassword,
     validateSchema,
     validateSettings,
+<<<<<<< HEAD
     validateRedirects,
+=======
+>>>>>>> newversion/master
     validate;
 
 function assertString(input) {
@@ -96,7 +103,11 @@ validator.extend('isSlug', function isSlug(str) {
 validatePassword = function validatePassword(password, email, blogTitle) {
     var validationResult = {isValid: true},
         disallowedPasswords = ['password', 'ghost', 'passw0rd'],
+<<<<<<< HEAD
         blogUrl = urlService.utils.urlFor('home', true),
+=======
+        blogUrl = urlUtils.urlFor('home', true),
+>>>>>>> newversion/master
         badPasswords = [
             '1234567890',
             'qwertyuiop',
@@ -191,9 +202,15 @@ validateSchema = function validateSchema(tableName, model, options) {
         }
 
         // check nullable
+<<<<<<< HEAD
         if (schema[tableName][columnKey].hasOwnProperty('nullable') &&
             schema[tableName][columnKey].nullable !== true &&
             !schema[tableName][columnKey].hasOwnProperty('defaultTo')
+=======
+        if (Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'nullable') &&
+            schema[tableName][columnKey].nullable !== true &&
+            !Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'defaultTo')
+>>>>>>> newversion/master
         ) {
             if (validator.empty(strVal)) {
                 message = common.i18n.t('notices.data.validation.index.valueCannotBeBlank', {
@@ -208,7 +225,11 @@ validateSchema = function validateSchema(tableName, model, options) {
         }
 
         // validate boolean columns
+<<<<<<< HEAD
         if (schema[tableName][columnKey].hasOwnProperty('type')
+=======
+        if (Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'type')
+>>>>>>> newversion/master
             && schema[tableName][columnKey].type === 'bool') {
             if (!(validator.isBoolean(strVal) || validator.empty(strVal))) {
                 message = common.i18n.t('notices.data.validation.index.valueMustBeBoolean', {
@@ -230,7 +251,11 @@ validateSchema = function validateSchema(tableName, model, options) {
         // TODO: check if mandatory values should be enforced
         if (model.get(columnKey) !== null && model.get(columnKey) !== undefined) {
             // check length
+<<<<<<< HEAD
             if (schema[tableName][columnKey].hasOwnProperty('maxlength')) {
+=======
+            if (Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'maxlength')) {
+>>>>>>> newversion/master
                 if (!validator.isLength(strVal, 0, schema[tableName][columnKey].maxlength)) {
                     message = common.i18n.t('notices.data.validation.index.valueExceedsMaxLength',
                         {
@@ -246,12 +271,20 @@ validateSchema = function validateSchema(tableName, model, options) {
             }
 
             // check validations objects
+<<<<<<< HEAD
             if (schema[tableName][columnKey].hasOwnProperty('validations')) {
+=======
+            if (Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'validations')) {
+>>>>>>> newversion/master
                 validationErrors = validationErrors.concat(validate(strVal, columnKey, schema[tableName][columnKey].validations, tableName));
             }
 
             // check type
+<<<<<<< HEAD
             if (schema[tableName][columnKey].hasOwnProperty('type')) {
+=======
+            if (Object.prototype.hasOwnProperty.call(schema[tableName][columnKey], 'type')) {
+>>>>>>> newversion/master
                 if (schema[tableName][columnKey].type === 'integer' && !validator.isInt(strVal)) {
                     message = common.i18n.t('notices.data.validation.index.valueIsNotInteger', {
                         tableName: tableName,
@@ -356,6 +389,7 @@ validate = function validate(value, key, validations, tableName) {
     return validationErrors;
 };
 
+<<<<<<< HEAD
 /**
  * Redirects are file based at the moment, but they will live in the database in the future.
  * See V2 of https://github.com/TryGhost/Ghost/issues/7707.
@@ -379,11 +413,17 @@ validateRedirects = function validateRedirects(redirects) {
     });
 };
 
+=======
+>>>>>>> newversion/master
 module.exports = {
     validate: validate,
     validator: validator,
     validatePassword: validatePassword,
     validateSchema: validateSchema,
+<<<<<<< HEAD
     validateSettings: validateSettings,
     validateRedirects: validateRedirects
+=======
+    validateSettings: validateSettings
+>>>>>>> newversion/master
 };

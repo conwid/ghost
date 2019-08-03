@@ -20,14 +20,29 @@ Subscriber = ghostBookshelf.Model.extend({
     },
 
     onCreated: function onCreated(model, response, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onCreated.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('added', options);
     },
 
     onUpdated: function onUpdated(model, response, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onUpdated.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('edited', options);
     },
 
     onDestroyed: function onDestroyed(model, options) {
+<<<<<<< HEAD
+=======
+        ghostBookshelf.Model.prototype.onDestroyed.apply(this, arguments);
+
+>>>>>>> newversion/master
         model.emitChange('deleted', options);
     }
 }, {
@@ -35,6 +50,7 @@ Subscriber = ghostBookshelf.Model.extend({
     orderDefaultOptions: function orderDefaultOptions() {
         return {};
     },
+<<<<<<< HEAD
     /**
      * @deprecated in favour of filter
      */
@@ -44,11 +60,19 @@ Subscriber = ghostBookshelf.Model.extend({
 
     permittedOptions: function permittedOptions(methodName) {
         var options = ghostBookshelf.Model.permittedOptions(),
+=======
+
+    permittedOptions: function permittedOptions(methodName) {
+        var options = ghostBookshelf.Model.permittedOptions.call(this, methodName),
+>>>>>>> newversion/master
 
             // whitelists for the `options` hash argument on methods, by method name.
             // these are the only options that can be passed to Bookshelf / Knex.
             validOptions = {
+<<<<<<< HEAD
                 findPage: ['page', 'limit', 'columns', 'filter', 'order'],
+=======
+>>>>>>> newversion/master
                 findAll: ['columns']
             };
 
@@ -59,7 +83,11 @@ Subscriber = ghostBookshelf.Model.extend({
         return options;
     },
 
+<<<<<<< HEAD
     permissible: function permissible(postModelOrId, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission) {
+=======
+    permissible: function permissible(postModelOrId, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission, hasApiKeyPermission) {
+>>>>>>> newversion/master
         // CASE: external is only allowed to add and edit subscribers
         if (context.external) {
             if (['add', 'edit'].indexOf(action) !== -1) {
@@ -67,7 +95,11 @@ Subscriber = ghostBookshelf.Model.extend({
             }
         }
 
+<<<<<<< HEAD
         if (hasUserPermission && hasAppPermission) {
+=======
+        if (hasUserPermission && hasAppPermission && hasApiKeyPermission) {
+>>>>>>> newversion/master
             return Promise.resolve();
         }
 

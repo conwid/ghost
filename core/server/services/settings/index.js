@@ -2,6 +2,7 @@
  * Settings Lib
  * A collection of utilities for handling settings including a cache
  */
+<<<<<<< HEAD
 const _ = require('lodash'),
     SettingsModel = require('../../models/settings').Settings,
     SettingsCache = require('./cache'),
@@ -23,11 +24,21 @@ module.exports = {
                 // Update the defaults
                 return SettingsModel.populateDefaults();
             })
+=======
+const models = require('../../models');
+const SettingsCache = require('./cache');
+
+module.exports = {
+    init: function init() {
+        // Update the defaults
+        return models.Settings.populateDefaults()
+>>>>>>> newversion/master
             .then((settingsCollection) => {
                 // Initialise the cache with the result
                 // This will bind to events for further updates
                 SettingsCache.init(settingsCollection);
             });
+<<<<<<< HEAD
     },
 
     /**
@@ -90,5 +101,7 @@ module.exports = {
         });
 
         return settingsToReturn;
+=======
+>>>>>>> newversion/master
     }
 };

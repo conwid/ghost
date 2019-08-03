@@ -25,6 +25,7 @@
               <div class="gh-view">
                 <section class="error-content error-404 js-error-container">
                   <section class="error-details">
+<<<<<<< HEAD
                     <img
                     class="error-ghost"
                     src="{{asset "public/404-ghost@2x.png"}}"
@@ -33,6 +34,12 @@
                       <h1 class="error-code">{{statusCode}}</h1>
                       <h2 class="error-description">{{message}}</h2>
                       <a class="error-link" href="{{@blog.url}}">Go to the front page →</a>
+=======
+                    <section class="error-message">
+                      <h1 class="error-code">{{statusCode}}</h1>
+                      <h2 class="error-description">{{message}}</h2>
+                      <a class="error-link" href="{{@site.url}}">Go to the front page →</a>
+>>>>>>> newversion/master
                     </section>
                   </section>
                 </section>
@@ -42,6 +49,7 @@
                         <h3>Theme errors</h3>
 
                         <ul class="error-stack-list">
+<<<<<<< HEAD
                             {{#each errorDetails}}
                                 <li>
                                     <em class="error-stack-function">{{{rule}}}</em>
@@ -52,6 +60,18 @@
                                     {{/each}}
                                 </li>
                             {{/each}}
+=======
+                            {{#foreach errorDetails}}
+                                <li>
+                                    <em class="error-stack-function">{{{rule}}}</em>
+
+                                    {{#foreach failures}}
+                                        <p><span class="error-stack-file">Ref: {{ref}}</span></p>
+                                        <p><span class="error-stack-file">Message: {{message}}</span></p>
+                                    {{/foreach}}
+                                </li>
+                            {{/foreach}}
+>>>>>>> newversion/master
                         </ul>
                     </section>
                 {{/if}}

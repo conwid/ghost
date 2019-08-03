@@ -58,6 +58,10 @@ class TagsImporter extends BaseImporter {
                             // for identifier lookup
                             this.importedData.push({
                                 id: importedModel.id,
+<<<<<<< HEAD
+=======
+                                originalId: this.originalIdMap[importedModel.id],
+>>>>>>> newversion/master
                                 slug: importedModel.get('slug'),
                                 originalSlug: obj.slug
                             });

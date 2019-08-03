@@ -5,5 +5,10 @@ module.exports = [
     require('./hr'),
     require('./html'),
     require('./image'),
+<<<<<<< HEAD
     require('./markdown')
+=======
+    require('./markdown'),
+    require('./gallery')
+>>>>>>> newversion/master
 ];

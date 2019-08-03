@@ -8,6 +8,15 @@
         },
         "notifications": {
             "defaultValue": "[]"
+<<<<<<< HEAD
+=======
+        },
+        "session_secret": {
+            "defaultValue": null
+        },
+        "theme_session_secret": {
+            "defaultValue": null
+>>>>>>> newversion/master
         }
     },
     "blog": {
@@ -28,10 +37,17 @@
             }
         },
         "logo": {
+<<<<<<< HEAD
             "defaultValue": "https://casper.ghost.org/v1.0.0/images/ghost-logo.svg"
         },
         "cover_image": {
             "defaultValue": "https://casper.ghost.org/v1.0.0/images/blog-cover.jpg"
+=======
+            "defaultValue": "https://static.ghost.org/v1.0.0/images/ghost-logo.svg"
+        },
+        "cover_image": {
+            "defaultValue": "https://static.ghost.org/v1.0.0/images/blog-cover.jpg"
+>>>>>>> newversion/master
         },
         "icon": {
             "defaultValue": ""
@@ -65,7 +81,14 @@
             }
         },
         "amp": {
+<<<<<<< HEAD
             "defaultValue" : "true"
+=======
+            "defaultValue" : "true",
+            "validations": {
+                "isIn": [["true", "false"]]
+            }
+>>>>>>> newversion/master
         },
         "ghost_head": {
             "defaultValue" : ""
@@ -80,6 +103,7 @@
             "defaultValue" : "tryghost"
         },
         "labs": {
+<<<<<<< HEAD
             "defaultValue": "{\"publicAPI\": true}"
         },
         "navigation": {
@@ -90,6 +114,82 @@
         },
         "unsplash": {
             "defaultValue": "{\"isActive\": true}"
+=======
+            "defaultValue": "{}"
+        },
+        "navigation": {
+            "defaultValue": "[{\"label\":\"Home\", \"url\":\"/\"},{\"label\":\"Tag\", \"url\":\"/tag/getting-started/\"}, {\"label\":\"Author\", \"url\":\"/author/ghost/\"},{\"label\":\"Help\", \"url\":\"https://ghost.org/docs/\"}]"
+        },
+        "slack": {
+            "defaultValue": "[{\"url\":\"\", \"username\":\"Ghost\"}]"
+        },
+        "unsplash": {
+            "defaultValue": "{\"isActive\": true}"
+        },
+        "meta_title": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 300
+                }
+            }
+        },
+        "meta_description": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 500
+                }
+            }
+        },
+        "og_image": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 2000
+                }
+            }
+        },
+        "og_title": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 300
+                }
+            }
+        },
+        "og_description": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 300
+                }
+            }
+        },
+        "twitter_image": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 2000
+                }
+            }
+        },
+        "twitter_title": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 300
+                }
+            }
+        },
+        "twitter_description": {
+            "defaultValue": null,
+            "validations": {
+                "isLength": {
+                    "max": 300
+                }
+            }
+>>>>>>> newversion/master
         }
     },
     "theme": {
@@ -97,6 +197,7 @@
             "defaultValue": "casper"
         }
     },
+<<<<<<< HEAD
     "app": {
         "active_apps": {
             "defaultValue": "[]"
@@ -108,6 +209,14 @@
     "private": {
         "is_private": {
             "defaultValue": "false"
+=======
+    "private": {
+        "is_private": {
+            "defaultValue": "false",
+            "validations": {
+                "isIn": [["true", "false"]]
+            }
+>>>>>>> newversion/master
         },
         "password": {
             "defaultValue": ""
@@ -115,5 +224,22 @@
         "public_hash": {
             "defaultValue": null
         }
+<<<<<<< HEAD
+=======
+    },
+    "members": {
+        "members_public_key": {
+            "defaultValue": null
+        },
+        "members_private_key": {
+            "defaultValue": null
+        },
+        "members_session_secret": {
+            "defaultValue": null
+        },
+        "members_subscription_settings": {
+            "defaultValue": "{\"isPaid\":false,\"paymentProcessors\":[{\"adapter\":\"stripe\",\"config\":{\"secret_token\":\"\",\"public_token\":\"\",\"product\":{\"name\":\"Ghost Subscription\"},\"plans\":[{\"name\":\"Monthly\",\"currency\":\"usd\",\"interval\":\"month\",\"amount\":\"\"},{\"name\":\"Yearly\",\"currency\":\"usd\",\"interval\":\"year\",\"amount\":\"\"}]}}]}"
+        }
+>>>>>>> newversion/master
     }
 }

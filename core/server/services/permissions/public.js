@@ -4,6 +4,21 @@ var _ = require('lodash'),
     parseContext = require('./parse-context'),
     _private = {};
 
+<<<<<<< HEAD
+=======
+/**
+ * @TODO:
+ *
+ * - remove if we drop `extraFilters` (see e.g. post model)
+ * - we currently accept `?status={value}` in the API
+ * - we currently accept `?staticPages={value}` in the API
+ * - but instead people should use the `?filter=status:{value}`
+ *
+ * This function protects against:
+ *
+ * - public context cannot fetch draft/scheduled posts
+ */
+>>>>>>> newversion/master
 _private.applyStatusRules = function applyStatusRules(docName, method, opts) {
     var err = new common.errors.NoPermissionError({message: common.i18n.t('errors.permissions.applyStatusRules.error', {docName: docName})});
 

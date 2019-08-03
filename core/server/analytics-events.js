@@ -13,11 +13,27 @@ module.exports.init = function () {
     toTrack = [
         {
             event: 'post.published',
+<<<<<<< HEAD
             name: 'Blog Post Published'
         },
         {
             event: 'page.published',
             name: 'Blog Page Published'
+=======
+            name: 'Post Published'
+        },
+        {
+            event: 'page.published',
+            name: 'Page Published'
+        },
+        {
+            event: 'theme.uploaded',
+            name: 'Theme Uploaded'
+        },
+        {
+            event: 'integration.added',
+            name: 'Custom Integration Added'
+>>>>>>> newversion/master
         }
     ];
 

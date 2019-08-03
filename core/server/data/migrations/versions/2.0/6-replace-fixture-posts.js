@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+<<<<<<< HEAD
 const _ = require('lodash');
 const moment = require('moment-timezone');
 const models = require('../../../../models');
@@ -184,4 +185,14 @@ module.exports.down = (options) => {
                 return models.Post.destroy(Object.assign({id: model.id}, localOptions));
             });
     });
+=======
+
+// @NOTE: the logic of this migration script was removed.
+module.exports.up = () => {
+    return Promise.resolve();
+};
+
+module.exports.down = () => {
+    return Promise.resolve();
+>>>>>>> newversion/master
 };

@@ -1,11 +1,14 @@
 // # Ghost Startup
 // Orchestrates the startup of Ghost when run from command line.
 
+<<<<<<< HEAD
 if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
 	var appInsights = require('applicationinsights');
 	appInsights.setup().start();
 }
 
+=======
+>>>>>>> newversion/master
 var startTime = Date.now(),
     debug = require('ghost-ignition').debug('boot:index'),
     ghost, express, common, urlService, parentApp;
@@ -18,7 +21,11 @@ debug('Required ghost');
 
 express = require('express');
 common = require('./core/server/lib/common');
+<<<<<<< HEAD
 urlService = require('./core/server/services/url');
+=======
+urlService = require('./core/frontend/services/url');
+>>>>>>> newversion/master
 parentApp = express();
 
 debug('Initialising Ghost');

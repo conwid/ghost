@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var debug = require('ghost-ignition').debug('services:apps'),
     _ = require('lodash'),
     Promise = require('bluebird'),
@@ -36,10 +37,18 @@ function saveInstalledApps(installedApps) {
         }]
     }, {context: {internal: true}});
 }
+=======
+const debug = require('ghost-ignition').debug('services:apps');
+const Promise = require('bluebird');
+const common = require('../../lib/common');
+const config = require('../../config');
+const loader = require('./loader');
+>>>>>>> newversion/master
 
 module.exports = {
     init: function () {
         debug('init begin');
+<<<<<<< HEAD
         var activeApps = settingsCache.get('active_apps'),
             installedApps = settingsCache.get('installed_apps'),
             // Load means either activate, or install and activate
@@ -67,6 +76,11 @@ module.exports = {
                 // Save our installed apps to settings
                 return saveInstalledApps(_.keys(availableApps));
             })
+=======
+        const appsToLoad = config.get('apps:internal');
+
+        return Promise.map(appsToLoad, appName => loader.activateAppByName(appName))
+>>>>>>> newversion/master
             .catch(function (err) {
                 common.logging.error(new common.errors.GhostError({
                     err: err,
@@ -74,6 +88,10 @@ module.exports = {
                     help: common.i18n.t('errors.apps.appWillNotBeLoaded.help')
                 }));
             });
+<<<<<<< HEAD
     },
     availableApps: availableApps
+=======
+    }
+>>>>>>> newversion/master
 };

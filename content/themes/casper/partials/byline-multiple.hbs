@@ -12,7 +12,11 @@
             <div class="author-card">
                 <div class="basic-info">
                     {{#if profile_image}}
+<<<<<<< HEAD
                         <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+=======
+                        <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+>>>>>>> newversion/master
                     {{else}}
                         <div class="author-profile-image">{{> "icons/avatar"}}</div>
                     {{/if}}
@@ -29,7 +33,13 @@
             </div>
 
             {{#if profile_image}}
+<<<<<<< HEAD
                 <a href="{{url}}" class="moving-avatar"><img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" /></a>
+=======
+                <a href="{{url}}" class="moving-avatar">
+                    <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                </a>
+>>>>>>> newversion/master
             {{else}}
                 <a href="{{url}}" class="moving-avatar author-profile-image">{{> "icons/avatar"}}</a>
             {{/if}}

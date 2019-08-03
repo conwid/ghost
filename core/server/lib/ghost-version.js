@@ -7,10 +7,17 @@ let _private = {};
 
 _private.compose = function compose(type) {
     switch (type) {
+<<<<<<< HEAD
         case 'pre':
             return plainVersion + '-' + semver.prerelease(version)[0] + (semver.prerelease(version)[1] ? '.' + semver.prerelease(version)[1] : '');
         default:
             return version;
+=======
+    case 'pre':
+        return plainVersion + '-' + semver.prerelease(version)[0] + (semver.prerelease(version)[1] ? '.' + semver.prerelease(version)[1] : '');
+    default:
+        return version;
+>>>>>>> newversion/master
     }
 };
 

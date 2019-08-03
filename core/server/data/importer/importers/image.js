@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 var _       = require('lodash'),
+=======
+var _ = require('lodash'),
+>>>>>>> newversion/master
     Promise = require('bluebird'),
     storage = require('../../../adapters/storage'),
     replaceImage,

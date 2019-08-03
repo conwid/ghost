@@ -2,7 +2,11 @@ var _ = require('lodash').runInContext(),
     fs = require('fs-extra'),
     path = require('path'),
     htmlToText = require('html-to-text'),
+<<<<<<< HEAD
     urlService = require('../url'),
+=======
+    urlUtils = require('../../lib/url-utils'),
+>>>>>>> newversion/master
     templatesDir = path.resolve(__dirname, '..', 'mail', 'templates');
 
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
@@ -12,7 +16,11 @@ exports.generateContent = function generateContent(options) {
         data;
 
     defaults = {
+<<<<<<< HEAD
         siteUrl: urlService.utils.urlFor('home', true)
+=======
+        siteUrl: urlUtils.urlFor('home', true)
+>>>>>>> newversion/master
     };
 
     data = _.defaults(defaults, options.data);

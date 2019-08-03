@@ -75,6 +75,10 @@ class TrustedDomainsImporter extends BaseImporter {
     }
 
     generateIdentifier() {
+<<<<<<< HEAD
+=======
+        this.stripProperties(['id']);
+>>>>>>> newversion/master
         return Promise.resolve();
     }
 

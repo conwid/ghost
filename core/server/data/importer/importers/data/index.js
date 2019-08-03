@@ -48,7 +48,11 @@ DataImporter = {
             }
         };
 
+<<<<<<< HEAD
         if (!importOptions.hasOwnProperty('returnImportedData')) {
+=======
+        if (!Object.prototype.hasOwnProperty.call(importOptions, 'returnImportedData')) {
+>>>>>>> newversion/master
             importOptions.returnImportedData = false;
         }
 
@@ -59,14 +63,22 @@ DataImporter = {
         if (!importData.meta) {
             throw new common.errors.IncorrectUsageError({
                 message: 'Wrong importer structure. `meta` is missing.',
+<<<<<<< HEAD
                 help: 'https://docs.ghost.org/docs/the-importer'
+=======
+                help: 'https://ghost.org/docs/api/migration/#json-file-structure'
+>>>>>>> newversion/master
             });
         }
 
         if (!importData.meta.version) {
             throw new common.errors.IncorrectUsageError({
                 message: 'Wrong importer structure. `meta.version` is missing.',
+<<<<<<< HEAD
                 help: 'https://docs.ghost.org/docs/the-importer'
+=======
+                help: 'https://ghost.org/docs/api/migration/#json-file-structure'
+>>>>>>> newversion/master
             });
         }
 
@@ -76,7 +88,11 @@ DataImporter = {
         if (!semver.valid(importData.meta.version)) {
             return Promise.reject(new common.errors.InternalServerError({
                 message: 'Detected unsupported file structure.',
+<<<<<<< HEAD
                 context: 'Please install Ghost 1.0, import the file and then update your blog to Ghost 2.0.\nVisit https://docs.ghost.org/v1/docs/install or ask for help in our https://forum.ghost.org.'
+=======
+                help: 'Please install Ghost 1.0, import the file and then update your blog to Ghost 2.0.\nVisit https://ghost.org/faq/upgrade-to-ghost-1-0 or ask for help in our https://forum.ghost.org.'
+>>>>>>> newversion/master
             }));
         }
 

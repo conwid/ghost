@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // # Ghost Data API
 // Provides access from anywhere to the Ghost data layer.
 //
@@ -359,3 +360,9 @@ module.exports = {
  * @param {String} app (optional)
  * @param {Boolean} internal (optional)
  */
+=======
+module.exports = require('./v0.1');
+module.exports['v0.1'] = require('./v0.1');
+module.exports.v2 = require('./v2');
+module.exports.shared = require('./shared');
+>>>>>>> newversion/master

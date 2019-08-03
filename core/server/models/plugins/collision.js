@@ -46,6 +46,7 @@ module.exports = function (Bookshelf) {
              * HTML is always auto generated, ignore.
              */
             parentSync.update = function update() {
+<<<<<<< HEAD
                 var changed = _.omit(self.changed, [
                         'created_at', 'updated_at', 'author_id', 'id',
                         'published_by', 'updated_by', 'html', 'plaintext'
@@ -70,6 +71,35 @@ module.exports = function (Bookshelf) {
                 }
 
                 return originalUpdateSync.apply(this, arguments);
+=======
+                return originalUpdateSync.apply(this, arguments)
+                    .then((response) => {
+                        const changed = _.omit(self._changed, [
+                            'created_at', 'updated_at', 'author_id', 'id',
+                            'published_by', 'updated_by', 'html', 'plaintext'
+                        ]);
+
+                        const clientUpdatedAt = moment(self.clientData.updated_at || self.serverData.updated_at || new Date());
+                        const serverUpdatedAt = moment(self.serverData.updated_at || clientUpdatedAt);
+
+                        if (Object.keys(changed).length) {
+                            if (clientUpdatedAt.diff(serverUpdatedAt) !== 0) {
+                                // @NOTE: This will rollback the update. We cannot know if relations were updated before doing the update.
+                                return Promise.reject(new common.errors.UpdateCollisionError({
+                                    message: 'Saving failed! Someone else is editing this post.',
+                                    code: 'UPDATE_COLLISION',
+                                    level: 'critical',
+                                    errorDetails: {
+                                        clientUpdatedAt: self.clientData.updated_at,
+                                        serverUpdatedAt: self.serverData.updated_at
+                                    }
+                                }));
+                            }
+                        }
+
+                        return response;
+                    });
+>>>>>>> newversion/master
             };
 
             return parentSync;

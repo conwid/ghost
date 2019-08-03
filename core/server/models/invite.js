@@ -1,7 +1,17 @@
+<<<<<<< HEAD
 const constants = require('../lib/constants'),
     security = require('../lib/security'),
     settingsCache = require('../services/settings/cache'),
     ghostBookshelf = require('./base');
+=======
+const Promise = require('bluebird');
+const _ = require('lodash');
+const common = require('../lib/common');
+const constants = require('../lib/constants');
+const security = require('../lib/security');
+const settingsCache = require('../services/settings/cache');
+const ghostBookshelf = require('./base');
+>>>>>>> newversion/master
 
 let Invite,
     Invites;
@@ -21,10 +31,13 @@ Invite = ghostBookshelf.Model.extend({
         return {};
     },
 
+<<<<<<< HEAD
     processOptions: function processOptions(options) {
         return options;
     },
 
+=======
+>>>>>>> newversion/master
     add: function add(data, unfilteredOptions) {
         const options = Invite.filterOptions(unfilteredOptions, 'add');
         data = data || {};
@@ -41,6 +54,63 @@ Invite = ghostBookshelf.Model.extend({
         });
 
         return ghostBookshelf.Model.add.call(this, data, options);
+<<<<<<< HEAD
+=======
+    },
+
+    permissible(inviteModel, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission, hasApiKeyPermission) {
+        const isAdd = (action === 'add');
+
+        if (!isAdd) {
+            if (hasUserPermission && hasAppPermission && hasApiKeyPermission) {
+                return Promise.resolve();
+            }
+
+            return Promise.reject(new common.errors.NoPermissionError({
+                message: common.i18n.t('errors.models.invite.notEnoughPermission')
+            }));
+        }
+
+        // CASE: make sure user is allowed to add a user with this role
+        return ghostBookshelf.model('Role')
+            .findOne({id: unsafeAttrs.role_id})
+            .then((roleToInvite) => {
+                if (!roleToInvite) {
+                    return Promise.reject(new common.errors.NotFoundError({
+                        message: common.i18n.t('errors.api.invites.roleNotFound')
+                    }));
+                }
+
+                if (roleToInvite.get('name') === 'Owner') {
+                    return Promise.reject(new common.errors.NoPermissionError({
+                        message: common.i18n.t('errors.api.invites.notAllowedToInviteOwner')
+                    }));
+                }
+
+                let allowed = [];
+
+                if (_.some(loadedPermissions.user.roles, {name: 'Owner'}) ||
+                    _.some(loadedPermissions.user.roles, {name: 'Administrator'})) {
+                    allowed = ['Administrator', 'Editor', 'Author', 'Contributor'];
+                } else if (_.some(loadedPermissions.user.roles, {name: 'Editor'})) {
+                    allowed = ['Author', 'Contributor'];
+                }
+
+                if (allowed.indexOf(roleToInvite.get('name')) === -1) {
+                    throw new common.errors.NoPermissionError({
+                        message: common.i18n.t('errors.api.invites.notAllowedToInvite')
+                    });
+                }
+
+                if (hasUserPermission && hasAppPermission && hasApiKeyPermission) {
+                    return Promise.resolve();
+                }
+
+                return Promise.reject(new common.errors.NoPermissionError({
+                    message: common.i18n.t('errors.models.invite.notEnoughPermission')
+                }));
+            });
+>>>>>>> newversion/master
     }
 });
 

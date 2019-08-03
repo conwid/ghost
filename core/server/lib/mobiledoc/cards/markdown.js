@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 module.exports = {
+=======
+const createCard = require('../create-card');
+
+module.exports = createCard({
+>>>>>>> newversion/master
     name: 'markdown',
     type: 'dom',
     render: function (opts) {
@@ -8,6 +14,13 @@ module.exports = {
         // convert markdown to HTML ready for insertion into dom
         let html = converters.markdownConverter.render(payload.markdown || '');
 
+<<<<<<< HEAD
+=======
+        if (!html) {
+            return '';
+        }
+
+>>>>>>> newversion/master
         /**
          * @deprecated Ghost 1.0's markdown-only renderer wrapped cards. Remove in Ghost 3.0
          */
@@ -19,4 +32,8 @@ module.exports = {
         // avoids parsing/rendering of potentially broken or unsupported HTML
         return opts.env.dom.createRawHTMLSection(html);
     }
+<<<<<<< HEAD
 };
+=======
+});
+>>>>>>> newversion/master
