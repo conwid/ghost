@@ -3,11 +3,7 @@
  *
  * Utility function, to expand strings out into objects.
  * @param {Object|String} context
-<<<<<<< HEAD
- * @return {{internal: boolean, external: boolean, user: integer|null, app: integer|null, public: boolean}}
-=======
  * @return {{internal: boolean, external: boolean, user: integer|null, app: integer|null, public: boolean, api_key: Object|null}}
->>>>>>> newversion/master
  */
 module.exports = function parseContext(context) {
     // Parse what's passed to canThis.beginCheck for standard user and app scopes
@@ -15,13 +11,9 @@ module.exports = function parseContext(context) {
         internal: false,
         external: false,
         user: null,
-<<<<<<< HEAD
-        app: null,
-=======
         api_key: null,
         app: null,
         integration: null,
->>>>>>> newversion/master
         public: true
     };
 
@@ -41,15 +33,12 @@ module.exports = function parseContext(context) {
         parsed.public = false;
     }
 
-<<<<<<< HEAD
-=======
     if (context && context.api_key) {
         parsed.api_key = context.api_key;
         parsed.integration = context.integration;
         parsed.public = (context.api_key.type === 'content');
     }
 
->>>>>>> newversion/master
     if (context && context.app) {
         parsed.app = context.app;
         parsed.public = false;

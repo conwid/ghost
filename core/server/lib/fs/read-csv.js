@@ -26,14 +26,6 @@ module.exports = function readCSV(options) {
                         result[columnsToExtract[0].name] = value[headers[0]];
                         return result;
                     });
-<<<<<<< HEAD
-
-                    // Add first row
-                    result = {};
-                    result[columnsToExtract[0].name] = headers[0];
-                    results = [result].concat(results);
-=======
->>>>>>> newversion/master
                 } else {
                     // If there are multiple columns in csv file
                     // try to match headers using lookup value

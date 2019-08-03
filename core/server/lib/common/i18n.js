@@ -1,42 +1,18 @@
-<<<<<<< HEAD
-/* global Intl */
-
-var supportedLocales = ['en'],
-=======
 const supportedLocales = ['en'],
->>>>>>> newversion/master
     chalk = require('chalk'),
     fs = require('fs-extra'),
     MessageFormat = require('intl-messageformat'),
     jp = require('jsonpath'),
-<<<<<<< HEAD
-    _ = require('lodash'),
-=======
     isString = require('lodash/isString'),
     isObject = require('lodash/isObject'),
     isEqual = require('lodash/isEqual'),
     merge = require('lodash/merge'),
->>>>>>> newversion/master
     path = require('path'),
     config = require('../../config'),
     errors = require('./errors'),
     events = require('./events'),
     logging = require('./logging'),
     settingsCache = require('../../services/settings/cache'),
-<<<<<<< HEAD
-    _private = {},
-
-    // currentLocale, dynamically based on overall settings (key = "default_locale") in the settings db table
-    // (during Ghost's initialization, settings available inside i18n functions below; see core/server/index.js)
-    //
-    // E.g.: en = English (default), es = Spanish, en-US = American English, etc.
-    // Standard:
-    // Language tags in HTML and XML
-    // https://www.w3.org/International/articles/language-tags/
-    //
-    // The corresponding translation files should be at content/themes/mytheme/locales/es.json, etc.
-    currentLocale,
-=======
     _private = {};
 
 // currentLocale, dynamically based on overall settings (key = "default_locale") in the settings db table
@@ -49,7 +25,6 @@ const supportedLocales = ['en'],
 //
 // The corresponding translation files should be at content/themes/mytheme/locales/es.json, etc.
 let currentLocale,
->>>>>>> newversion/master
     activeTheme,
     coreStrings,
     themeStrings,
@@ -82,11 +57,7 @@ I18n = {
      * @returns {string}
      */
     t: function t(path, bindings) {
-<<<<<<< HEAD
-        var string, isTheme, msg;
-=======
         let string, isTheme, msg;
->>>>>>> newversion/master
 
         currentLocale = I18n.locale();
         if (bindings !== undefined) {
@@ -98,17 +69,10 @@ I18n = {
         // If the path returns an array (as in the case with anything that has multiple paragraphs such as emails), then
         // loop through them and return an array of translated/formatted strings. Otherwise, just return the normal
         // translated/formatted string.
-<<<<<<< HEAD
-        if (_.isArray(string)) {
-            msg = [];
-            string.forEach(function (s) {
-                var m = new MessageFormat(s, currentLocale);
-=======
         if (Array.isArray(string)) {
             msg = [];
             string.forEach(function (s) {
                 let m = new MessageFormat(s, currentLocale);
->>>>>>> newversion/master
 
                 try {
                     m.format(bindings);
@@ -146,19 +110,11 @@ I18n = {
      * @returns {string}
      */
     findString: function findString(msgPath, opts) {
-<<<<<<< HEAD
-        var options = _.merge({log: true}, opts || {}),
-            candidateString, matchingString, path;
-
-        // no path? no string
-        if (_.isEmpty(msgPath) || !_.isString(msgPath)) {
-=======
         const options = merge({log: true}, opts || {});
         let candidateString, matchingString, path;
 
         // no path? no string
         if (msgPath.length === 0 || !isString(msgPath)) {
->>>>>>> newversion/master
             chalk.yellow('i18n.t() - received an empty path.');
             return '';
         }
@@ -186,21 +142,13 @@ I18n = {
             // While bracket-notation allows any Unicode characters in keys for themes,
             // dot-notation allows only word characters in keys for backend messages
             // (that is \w or [A-Za-z0-9_] in RegExp)
-<<<<<<< HEAD
-            path = '$.' + msgPath;
-=======
             path = `$.${msgPath}`;
->>>>>>> newversion/master
             candidateString = jp.value(coreStrings, path);
         }
 
         matchingString = candidateString || {};
 
-<<<<<<< HEAD
-        if (_.isObject(matchingString) || _.isEqual(matchingString, {})) {
-=======
         if (isObject(matchingString) || isEqual(matchingString, {})) {
->>>>>>> newversion/master
             if (options.log) {
                 logging.error(new errors.IncorrectUsageError({
                     message: `i18n error: path "${msgPath}" was not found`
@@ -214,11 +162,7 @@ I18n = {
     },
 
     doesTranslationKeyExist: function doesTranslationKeyExist(msgPath) {
-<<<<<<< HEAD
-        var translation = I18n.findString(msgPath, {log: false});
-=======
         const translation = I18n.findString(msgPath, {log: false});
->>>>>>> newversion/master
         return translation !== coreStrings.errors.errors.anErrorOccurred;
     },
 
@@ -264,13 +208,9 @@ I18n = {
             } catch (err) {
                 themeStrings = undefined;
                 if (err.code === 'ENOENT') {
-<<<<<<< HEAD
-                    logging.warn('Theme\'s file locales/' + currentLocale + '.json not found.');
-=======
                     if (currentLocale !== 'en') {
                         logging.warn(`Theme's file locales/${currentLocale}.json not found.`);
                     }
->>>>>>> newversion/master
                 } else {
                     throw err;
                 }
@@ -309,11 +249,7 @@ I18n = {
 
     /**
      * Exporting the current locale (e.g. "en") to make it available for other files as well,
-<<<<<<< HEAD
-     * such as core/server/helpers/date.js and core/server/helpers/lang.js
-=======
      * such as core/frontend/helpers/date.js and core/frontend/helpers/lang.js
->>>>>>> newversion/master
      */
     locale: function locale() {
         return settingsCache.get('default_locale');
@@ -325,11 +261,7 @@ I18n = {
  *  - Polyfill node.js if it does not have Intl support or support for a particular locale
  */
 _private.initializeIntl = function initializeIntl() {
-<<<<<<< HEAD
-    var hasBuiltInLocaleData, IntlPolyfill;
-=======
     let hasBuiltInLocaleData, IntlPolyfill;
->>>>>>> newversion/master
 
     if (global.Intl) {
         // Determine if the built-in `Intl` has the locale data we need.

@@ -1,28 +1,16 @@
-<<<<<<< HEAD
-var labs = require('../labs'),
-    common = require('../../lib/common'),
-    authorize;
-
-authorize = {
-=======
 const labs = require('../labs');
 const common = require('../../lib/common');
 
 const authorize = {
->>>>>>> newversion/master
     // Workaround for missing permissions
     // TODO: rework when https://github.com/TryGhost/Ghost/issues/3911 is  done
     requiresAuthorizedUser: function requiresAuthorizedUser(req, res, next) {
         if (req.user && req.user.id) {
             return next();
         } else {
-<<<<<<< HEAD
-            return next(new common.errors.NoPermissionError({message: common.i18n.t('errors.middleware.auth.pleaseSignIn')}));
-=======
             return next(new common.errors.NoPermissionError({
                 message: common.i18n.t('errors.middleware.auth.pleaseSignIn')
             }));
->>>>>>> newversion/master
         }
     },
 
@@ -34,9 +22,6 @@ const authorize = {
             if (req.user && req.user.id) {
                 return next();
             } else {
-<<<<<<< HEAD
-                return next(new common.errors.NoPermissionError({message: common.i18n.t('errors.middleware.auth.pleaseSignIn')}));
-=======
                 // CASE: has no user access and public api is disabled
                 if (labs.isSet('publicAPI') !== true) {
                     return next(new common.errors.NoPermissionError({
@@ -49,7 +34,6 @@ const authorize = {
                 return next(new common.errors.NoPermissionError({
                     message: common.i18n.t('errors.middleware.auth.pleaseSignIn')
                 }));
->>>>>>> newversion/master
             }
         }
     },
@@ -58,19 +42,13 @@ const authorize = {
     requiresAuthorizedClient: function requiresAuthorizedClient(client) {
         return function doAuthorizedClient(req, res, next) {
             if (client && (!req.client || !req.client.name || req.client.name !== client)) {
-<<<<<<< HEAD
-                return next(new common.errors.NoPermissionError({message: common.i18n.t('errors.permissions.noPermissionToAction')}));
-=======
                 return next(new common.errors.NoPermissionError({
                     message: common.i18n.t('errors.permissions.noPermissionToAction')
                 }));
->>>>>>> newversion/master
             }
 
             return next();
         };
-<<<<<<< HEAD
-=======
     },
 
     authorizeContentApi(req, res, next) {
@@ -100,7 +78,6 @@ const authorize = {
                 context: common.i18n.t('errors.middleware.auth.missingAdminUserOrIntegration')
             }));
         }
->>>>>>> newversion/master
     }
 };
 

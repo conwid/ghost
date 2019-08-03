@@ -2,10 +2,7 @@ const Promise = require('bluebird'),
     _ = require('lodash'),
     uuid = require('uuid'),
     crypto = require('crypto'),
-<<<<<<< HEAD
-=======
     keypair = require('keypair'),
->>>>>>> newversion/master
     ghostBookshelf = require('./base'),
     common = require('../lib/common'),
     validation = require('../data/validation'),
@@ -13,8 +10,6 @@ const Promise = require('bluebird'),
 
 let Settings, defaultSettings;
 
-<<<<<<< HEAD
-=======
 const doBlock = fn => fn();
 
 const getMembersKey = doBlock(() => {
@@ -27,7 +22,6 @@ const getMembersKey = doBlock(() => {
     };
 });
 
->>>>>>> newversion/master
 // For neatness, the defaults file is split into categories.
 // It's much easier for us to work with it as a single level
 // instead of iterating those categories every time
@@ -35,10 +29,6 @@ function parseDefaultSettings() {
     var defaultSettingsInCategories = require('../data/schema/').defaultSettings,
         defaultSettingsFlattened = {},
         dynamicDefault = {
-<<<<<<< HEAD
-            db_hash: uuid.v4(),
-            public_hash: crypto.randomBytes(15).toString('hex')
-=======
             db_hash: () => uuid.v4(),
             public_hash: () => crypto.randomBytes(15).toString('hex'),
             // @TODO: session_secret would ideally be named "admin_session_secret"
@@ -47,18 +37,12 @@ function parseDefaultSettings() {
             theme_session_secret: () => crypto.randomBytes(32).toString('hex'),
             members_public_key: () => getMembersKey('public'),
             members_private_key: () => getMembersKey('private')
->>>>>>> newversion/master
         };
 
     _.each(defaultSettingsInCategories, function each(settings, categoryName) {
         _.each(settings, function each(setting, settingName) {
             setting.type = categoryName;
             setting.key = settingName;
-<<<<<<< HEAD
-            if (dynamicDefault[setting.key]) {
-                setting.defaultValue = dynamicDefault[setting.key];
-            }
-=======
 
             setting.getDefaultValue = function getDefaultValue() {
                 const getDynamicDefault = dynamicDefault[setting.key];
@@ -68,7 +52,6 @@ function parseDefaultSettings() {
                     return setting.defaultValue;
                 }
             };
->>>>>>> newversion/master
 
             defaultSettingsFlattened[settingName] = setting;
         });
@@ -103,31 +86,22 @@ Settings = ghostBookshelf.Model.extend({
     },
 
     onDestroyed: function onDestroyed(model, options) {
-<<<<<<< HEAD
-=======
         ghostBookshelf.Model.prototype.onDestroyed.apply(this, arguments);
 
->>>>>>> newversion/master
         model.emitChange('deleted', options);
         model.emitChange(model._previousAttributes.key + '.' + 'deleted', options);
     },
 
     onCreated: function onCreated(model, response, options) {
-<<<<<<< HEAD
-=======
         ghostBookshelf.Model.prototype.onCreated.apply(this, arguments);
 
->>>>>>> newversion/master
         model.emitChange('added', options);
         model.emitChange(model.attributes.key + '.' + 'added', options);
     },
 
     onUpdated: function onUpdated(model, response, options) {
-<<<<<<< HEAD
-=======
         ghostBookshelf.Model.prototype.onUpdated.apply(this, arguments);
 
->>>>>>> newversion/master
         model.emitChange('edited', options);
         model.emitChange(model.attributes.key + '.' + 'edited', options);
     },
@@ -139,8 +113,6 @@ Settings = ghostBookshelf.Model.extend({
             .then(function then() {
                 return validation.validateSettings(getDefaultSettings(), self);
             });
-<<<<<<< HEAD
-=======
     },
 
     format() {
@@ -168,7 +140,6 @@ Settings = ghostBookshelf.Model.extend({
         }
 
         return attrs;
->>>>>>> newversion/master
     }
 }, {
     findOne: function (data, options) {
@@ -210,19 +181,11 @@ Settings = ghostBookshelf.Model.extend({
                         return setting.save(item, options);
                     } else {
                         // If we have a value, set it.
-<<<<<<< HEAD
-                        if (item.hasOwnProperty('value')) {
-                            setting.set('value', item.value);
-                        }
-                        // Internal context can overwrite type (for fixture migrations)
-                        if (options.context && options.context.internal && item.hasOwnProperty('type')) {
-=======
                         if (Object.prototype.hasOwnProperty.call(item, 'value')) {
                             setting.set('value', item.value);
                         }
                         // Internal context can overwrite type (for fixture migrations)
                         if (options.context && options.context.internal && Object.prototype.hasOwnProperty.call(item, 'type')) {
->>>>>>> newversion/master
                             setting.set('type', item.type);
                         }
 
@@ -259,11 +222,7 @@ Settings = ghostBookshelf.Model.extend({
                 _.each(getDefaultSettings(), function forEachDefault(defaultSetting, defaultSettingKey) {
                     var isMissingFromDB = usedKeys.indexOf(defaultSettingKey) === -1;
                     if (isMissingFromDB) {
-<<<<<<< HEAD
-                        defaultSetting.value = defaultSetting.defaultValue;
-=======
                         defaultSetting.value = defaultSetting.getDefaultValue();
->>>>>>> newversion/master
                         insertOperations.push(Settings.forge(defaultSetting).save(null, options));
                     }
                 });

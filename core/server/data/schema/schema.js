@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* String Column Sizes Information
  * (From: https://github.com/TryGhost/Ghost/pull/7932)
  *
@@ -9,7 +7,6 @@
  * Text = length 65535 (64 KiB)
  * Long text = length 1,000,000,000
  */
->>>>>>> newversion/master
 module.exports = {
     posts: {
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
@@ -40,14 +37,11 @@ module.exports = {
          */
         author_id: {type: 'string', maxlength: 24, nullable: false},
         created_at: {type: 'dateTime', nullable: false},
-<<<<<<< HEAD
-=======
         /**
          * @deprecated: https://github.com/TryGhost/Ghost/issues/10286
          *
          * This is valid for all x_by fields.
          */
->>>>>>> newversion/master
         created_by: {type: 'string', maxlength: 24, nullable: false},
         updated_at: {type: 'dateTime', nullable: true},
         updated_by: {type: 'string', maxlength: 24, nullable: true},
@@ -62,12 +56,8 @@ module.exports = {
         twitter_image: {type: 'string', maxlength: 2000, nullable: true},
         twitter_title: {type: 'string', maxlength: 300, nullable: true},
         twitter_description: {type: 'string', maxlength: 500, nullable: true},
-<<<<<<< HEAD
-        custom_template: {type: 'string', maxlength: 100, nullable: true}
-=======
         custom_template: {type: 'string', maxlength: 100, nullable: true},
         canonical_url: {type: 'text', maxlength: 2000, nullable: true}
->>>>>>> newversion/master
     },
     users: {
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
@@ -158,11 +148,7 @@ module.exports = {
             maxlength: 50,
             nullable: false,
             defaultTo: 'core',
-<<<<<<< HEAD
-            validations: {isIn: [['core', 'blog', 'theme', 'app', 'plugin', 'private']]}
-=======
             validations: {isIn: [['core', 'blog', 'theme', 'app', 'plugin', 'private', 'members']]}
->>>>>>> newversion/master
         },
         created_at: {type: 'dateTime', nullable: false},
         created_by: {type: 'string', maxlength: 24, nullable: false},
@@ -325,8 +311,6 @@ module.exports = {
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
         event: {type: 'string', maxlength: 50, nullable: false, validations: {isLowercase: true}},
         target_url: {type: 'string', maxlength: 2000, nullable: false},
-<<<<<<< HEAD
-=======
         name: {type: 'string', maxlength: 191, nullable: true},
         secret: {type: 'string', maxlength: 191, nullable: true},
         api_version: {type: 'string', maxlength: 50, nullable: false, defaultTo: 'v2'},
@@ -403,13 +387,10 @@ module.exports = {
         email: {type: 'string', maxlength: 191, nullable: false, unique: true, validations: {isEmail: true}},
         name: {type: 'string', maxlength: 191, nullable: false},
         password: {type: 'string', maxlength: 60, nullable: true},
->>>>>>> newversion/master
         created_at: {type: 'dateTime', nullable: false},
         created_by: {type: 'string', maxlength: 24, nullable: false},
         updated_at: {type: 'dateTime', nullable: true},
         updated_by: {type: 'string', maxlength: 24, nullable: true}
-<<<<<<< HEAD
-=======
     },
     actions: {
         id: {type: 'string', maxlength: 24, nullable: false, primary: true},
@@ -423,6 +404,5 @@ module.exports = {
         // @NOTE: The context object can be used to store information about an action e.g. diffs, meta
         context: {type: 'text', maxlength: 1000000000, nullable: true},
         created_at: {type: 'dateTime', nullable: false}
->>>>>>> newversion/master
     }
 };

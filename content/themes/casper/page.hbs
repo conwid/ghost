@@ -22,9 +22,6 @@ into the {body} of the default.hbs template --}}
             </header>
 
             {{#if feature_image}}
-<<<<<<< HEAD
-            <figure class="post-full-image" style="background-image: url({{feature_image}})">
-=======
             <figure class="post-full-image">
                 {{!-- This is a responsive image, it loads different sizes depending on device
                 https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
@@ -39,7 +36,6 @@ into the {body} of the default.hbs template --}}
                     src="{{img_url feature_image size="xl"}}"
                     alt="{{title}}"
                 />
->>>>>>> newversion/master
             </figure>
             {{/if}}
 

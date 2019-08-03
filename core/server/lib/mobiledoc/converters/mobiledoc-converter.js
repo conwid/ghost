@@ -14,8 +14,6 @@ const options = {
     }
 };
 
-<<<<<<< HEAD
-=======
 const walkDom = function (node, func) {
     func(node);
     node = node.firstChild;
@@ -38,7 +36,6 @@ const nodeTextContent = function (node) {
     return textContent;
 };
 
->>>>>>> newversion/master
 // used to walk the rendered SimpleDOM output and modify elements before
 // serializing to HTML. Saves having a large HTML parsing dependency such as
 // jsdom that may break on malformed HTML in MD or HTML cards
@@ -52,11 +49,7 @@ class DomModifier {
             return;
         }
 
-<<<<<<< HEAD
-        let text = this.getTextValue(node);
-=======
         let text = nodeTextContent(node);
->>>>>>> newversion/master
         let id = text
             .replace(/[<>&"?]/g, '')
             .trim()
@@ -74,41 +67,8 @@ class DomModifier {
         node.setAttribute('id', id);
     }
 
-<<<<<<< HEAD
-    // extract to util?
-    getTextValue(node) {
-        let buffer = '';
-        let next = node.firstChild;
-        while (next !== null) {
-            buffer += this._extractTextValue(next);
-            next = next.nextSibling;
-        }
-
-        return buffer;
-    }
-
-    _extractTextValue(node) {
-        let buffer = '';
-
-        if (node.nodeType === 3) {
-            buffer += node.nodeValue;
-        }
-
-        buffer += this.getTextValue(node);
-
-        return buffer;
-    }
-
-    modifyChildren(node) {
-        let next = node.firstChild;
-        while (next !== null) {
-            this.modify(next);
-            next = next.nextSibling;
-        }
-=======
     modifyChildren(node) {
         walkDom(node, this.modify.bind(this));
->>>>>>> newversion/master
     }
 
     modify(node) {
@@ -116,11 +76,6 @@ class DomModifier {
         if (node.nodeType === 1 && node.nodeName.match(/^h\d$/i)) {
             this.addHeadingId(node);
         }
-<<<<<<< HEAD
-
-        this.modifyChildren(node);
-=======
->>>>>>> newversion/master
     }
 }
 
@@ -134,21 +89,6 @@ module.exports = {
          */
         version = version || 2;
 
-<<<<<<< HEAD
-        let versionedOptions = Object.assign({}, options, {
-            cardOptions: {version}
-        });
-
-        let renderer = new Renderer(versionedOptions);
-        let rendered = renderer.render(mobiledoc);
-        let serializer = new SimpleDom.HTMLSerializer(SimpleDom.voidMap);
-
-        // Koenig keeps a blank paragraph at the end of a doc but we want to
-        // make sure it doesn't get rendered
-        let lastChild = rendered.result.lastChild;
-        if (lastChild && lastChild.tagName === 'P' && !lastChild.firstChild) {
-            rendered.result.removeChild(lastChild);
-=======
         const versionedOptions = Object.assign({}, options, {
             cardOptions: {version}
         });
@@ -164,16 +104,11 @@ module.exports = {
             if (!nodeTextContent(lastChild)) {
                 rendered.result.removeChild(lastChild);
             }
->>>>>>> newversion/master
         }
 
         // Walk the DOM output and modify nodes as needed
         // eg. to add ID attributes to heading elements
-<<<<<<< HEAD
-        let modifier = new DomModifier();
-=======
         const modifier = new DomModifier();
->>>>>>> newversion/master
         modifier.modifyChildren(rendered.result);
 
         return serializer.serializeChildren(rendered.result);

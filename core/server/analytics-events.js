@@ -13,13 +13,6 @@ module.exports.init = function () {
     toTrack = [
         {
             event: 'post.published',
-<<<<<<< HEAD
-            name: 'Blog Post Published'
-        },
-        {
-            event: 'page.published',
-            name: 'Blog Page Published'
-=======
             name: 'Post Published'
         },
         {
@@ -33,7 +26,6 @@ module.exports.init = function () {
         {
             event: 'integration.added',
             name: 'Custom Integration Added'
->>>>>>> newversion/master
         }
     ];
 

@@ -6,11 +6,7 @@ var _ = require('lodash'),
     common = require('../../lib/common'),
     security = require('../../lib/security'),
     models = require('../../models'),
-<<<<<<< HEAD
-    EXCLUDED_TABLES = ['accesstokens', 'refreshtokens', 'clients', 'client_trusted_domains'],
-=======
     EXCLUDED_TABLES = ['accesstokens', 'refreshtokens', 'clients', 'client_trusted_domains', 'sessions'],
->>>>>>> newversion/master
     EXCLUDED_FIELDS_CONDITIONS = {
         settings: [{
             operator: 'whereNot',
@@ -29,11 +25,7 @@ var _ = require('lodash'),
     exportFileName;
 
 exportFileName = function exportFileName(options) {
-<<<<<<< HEAD
-    var datetime = (new Date()).toJSON().substring(0, 10),
-=======
     var datetime = require('moment')().format('YYYY-MM-DD-HH-mm-ss'),
->>>>>>> newversion/master
         title = '';
 
     options = options || {};

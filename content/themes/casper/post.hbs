@@ -28,9 +28,6 @@ into the {body} of the default.hbs template --}}
             </header>
 
             {{#if feature_image}}
-<<<<<<< HEAD
-            <figure class="post-full-image" style="background-image: url({{feature_image}})">
-=======
             <figure class="post-full-image">
                 {{!-- This is a responsive image, it loads different sizes depending on device
                 https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
@@ -45,7 +42,6 @@ into the {body} of the default.hbs template --}}
                     src="{{img_url feature_image size="xl"}}"
                     alt="{{title}}"
                 />
->>>>>>> newversion/master
             </figure>
             {{/if}}
 
@@ -58,11 +54,7 @@ into the {body} of the default.hbs template --}}
             {{!-- Email subscribe form at the bottom of the page --}}
             {{#if @labs.subscribers}}
             <section class="subscribe-form">
-<<<<<<< HEAD
-                <h3 class="subscribe-form-title">Subscribe to {{@blog.title}}</h3>
-=======
                 <h3 class="subscribe-form-title">Subscribe to {{@site.title}}</h3>
->>>>>>> newversion/master
                 <p>Get the latest posts delivered right to your inbox</p>
                 {{subscribe_form placeholder="youremail@example.com"}}
             </section>
@@ -103,16 +95,6 @@ into the {body} of the default.hbs template --}}
                 {{#if related_posts}}
                 <article class="read-next-card"
                     {{#if ../primary_tag.feature_image}}
-<<<<<<< HEAD
-                        style="background-image: url({{../primary_tag.feature_image}})"
-                    {{else}}
-                        {{#if @blog.cover_image}}
-                            style="background-image: url({{@blog.cover_image}})"{{/if}}
-                    {{/if}}
-                >
-                    <header class="read-next-card-header">
-                        <small class="read-next-card-header-sitetitle">&mdash; {{@blog.title}} &mdash;</small>
-=======
                         style="background-image: url({{img_url ../primary_tag.feature_image size="m"}})"
                     {{else}}
                         {{#if @site.cover_image}}
@@ -121,7 +103,6 @@ into the {body} of the default.hbs template --}}
                 >
                     <header class="read-next-card-header">
                         <small class="read-next-card-header-sitetitle">&mdash; {{@site.title}} &mdash;</small>
->>>>>>> newversion/master
                         {{#../primary_tag}}
                         <h3 class="read-next-card-header-title"><a href="{{url}}">{{name}}</a></h3>
                         {{/../primary_tag}}

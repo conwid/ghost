@@ -1,10 +1,6 @@
 const postScheduling = require(__dirname + '/post-scheduling');
 
 /**
-<<<<<<< HEAD
- * scheduling modules:
- *   - post scheduling: publish posts/pages when scheduled
-=======
  * @description Initialise all scheduler modules.
  *
  * We currently only support post-scheduling: publish posts/pages when scheduled.
@@ -19,7 +15,6 @@ const postScheduling = require(__dirname + '/post-scheduling');
  *                  }
  *
  * @TODO: Simplify the passed in options.
->>>>>>> newversion/master
  */
 exports.init = function init(options) {
     options = options || {};

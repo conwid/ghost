@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-var ghostBookshelf  = require('./base'),
-    Basetoken       = require('./base/token'),
-=======
 var ghostBookshelf = require('./base'),
     Basetoken = require('./base/token'),
->>>>>>> newversion/master
 
     Refreshtoken,
     Refreshtokens;

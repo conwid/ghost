@@ -100,13 +100,7 @@
                             <thead>
                                 <tr>
                                     <th width="70%">URL (<xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> total)</th>
-<<<<<<< HEAD
-                                    <th title="Priority" width="5%">Prio</th>
-                                    <th width="5%">Images</th>
-                                    <th title="Change Frequency" width="5%">Ch. Freq.</th>
-=======
                                     <th width="15%">Images</th>
->>>>>>> newversion/master
                                     <th title="Last Modification Time" width="15%">Last Modified</th>
                                 </tr>
                             </thead>
@@ -124,21 +118,9 @@
                                             </a>
                                         </td>
                                         <td>
-<<<<<<< HEAD
-                                            <xsl:value-of select="concat(sitemap:priority*100,'%')"/>
-                                        </td>
-                                        <td>
                                             <xsl:value-of select="count(image:image)"/>
                                         </td>
                                         <td>
-                                            <xsl:value-of select="concat(translate(substring(sitemap:changefreq, 1, 1),concat($lower, $upper),concat($upper, $lower)),substring(sitemap:changefreq, 2))"/>
-                                        </td>
-                                        <td>
-=======
-                                            <xsl:value-of select="count(image:image)"/>
-                                        </td>
-                                        <td>
->>>>>>> newversion/master
                                             <xsl:value-of select="concat(substring(sitemap:lastmod,0,11),concat(' ', substring(sitemap:lastmod,12,5)))"/>
                                         </td>
                                     </tr>

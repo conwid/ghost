@@ -4,8 +4,6 @@ const _ = require('lodash'),
     common = require('../../lib/common'),
     cache = {};
 
-<<<<<<< HEAD
-=======
 /**
  * @description Create the scheduling adapter.
  *
@@ -21,7 +19,6 @@ const _ = require('lodash'),
  * @param {Object} options
  * @return {Promise}
  */
->>>>>>> newversion/master
 exports.createAdapter = function (options) {
     options = options || {};
 
@@ -34,11 +31,7 @@ exports.createAdapter = function (options) {
         }));
     }
 
-<<<<<<< HEAD
-    if (cache.hasOwnProperty(activeAdapter)) {
-=======
     if (Object.prototype.hasOwnProperty.call(cache, activeAdapter)) {
->>>>>>> newversion/master
         return cache[activeAdapter];
     }
 

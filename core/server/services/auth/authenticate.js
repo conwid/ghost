@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-var passport = require('passport'),
-    authUtils = require('./utils'),
-    models = require('../../models'),
-    common = require('../../lib/common'),
-    authenticate;
-
-authenticate = {
-=======
 const passport = require('passport');
 const authUtils = require('./utils');
 const models = require('../../models');
@@ -16,7 +7,6 @@ const apiKeyAuth = require('./api-key');
 const members = require('./members');
 
 const authenticate = {
->>>>>>> newversion/master
     // ### Authenticate Client Middleware
     authenticateClient: function authenticateClient(req, res, next) {
         /**
@@ -52,11 +42,7 @@ const authenticate = {
             return next(new common.errors.UnauthorizedError({
                 message: common.i18n.t('errors.middleware.auth.accessDenied'),
                 context: common.i18n.t('errors.middleware.auth.clientCredentialsNotProvided'),
-<<<<<<< HEAD
-                help: common.i18n.t('errors.middleware.auth.forInformationRead', {url: 'https://api.ghost.org/docs/client-authentication'})
-=======
                 help: common.i18n.t('errors.middleware.auth.forInformationRead', {url: 'https://ghost.org/faq/upgrade-to-ghost-2-0/'})
->>>>>>> newversion/master
             }));
         }
 
@@ -74,11 +60,7 @@ const authenticate = {
                     return next(new common.errors.UnauthorizedError({
                         message: common.i18n.t('errors.middleware.auth.accessDenied'),
                         context: common.i18n.t('errors.middleware.auth.clientCredentialsNotValid'),
-<<<<<<< HEAD
-                        help: common.i18n.t('errors.middleware.auth.forInformationRead', {url: 'https://api.ghost.org/docs/client-authentication'})
-=======
                         help: common.i18n.t('errors.middleware.auth.forInformationRead', {url: 'https://ghost.org/faq/upgrade-to-ghost-2-0/'})
->>>>>>> newversion/master
                     }));
                 }
 
@@ -118,15 +100,11 @@ const authenticate = {
                 }));
             }
         )(req, res, next);
-<<<<<<< HEAD
-    }
-=======
     },
 
     authenticateAdminApi: [apiKeyAuth.admin.authenticate, session.authenticate],
 
     authenticateContentApi: [apiKeyAuth.content.authenticateContentApiKey, members.authenticateMembersToken]
->>>>>>> newversion/master
 };
 
 module.exports = authenticate;

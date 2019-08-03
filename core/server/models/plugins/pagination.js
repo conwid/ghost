@@ -199,8 +199,6 @@ pagination = function pagination(bookshelf) {
 
                         throw err;
                     });
-<<<<<<< HEAD
-=======
             }).catch((err) => {
                 // CASE: SQL syntax is incorrect
                 if (err.errno === 1054 || err.errno === 1) {
@@ -211,7 +209,6 @@ pagination = function pagination(bookshelf) {
                 }
 
                 throw err;
->>>>>>> newversion/master
             });
         }
     });

@@ -26,13 +26,6 @@ models = [
     'refreshtoken',
     'role',
     'settings',
-<<<<<<< HEAD
-    'subscriber',
-    'tag',
-    'user',
-    'invite',
-    'webhook'
-=======
     'session',
     'subscriber',
     'tag',
@@ -46,7 +39,6 @@ models = [
     'mobiledoc-revision',
     'member',
     'action'
->>>>>>> newversion/master
 ];
 
 function init() {

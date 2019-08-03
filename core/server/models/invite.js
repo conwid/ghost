@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-const constants = require('../lib/constants'),
-    security = require('../lib/security'),
-    settingsCache = require('../services/settings/cache'),
-    ghostBookshelf = require('./base');
-=======
 const Promise = require('bluebird');
 const _ = require('lodash');
 const common = require('../lib/common');
@@ -11,7 +5,6 @@ const constants = require('../lib/constants');
 const security = require('../lib/security');
 const settingsCache = require('../services/settings/cache');
 const ghostBookshelf = require('./base');
->>>>>>> newversion/master
 
 let Invite,
     Invites;
@@ -31,13 +24,6 @@ Invite = ghostBookshelf.Model.extend({
         return {};
     },
 
-<<<<<<< HEAD
-    processOptions: function processOptions(options) {
-        return options;
-    },
-
-=======
->>>>>>> newversion/master
     add: function add(data, unfilteredOptions) {
         const options = Invite.filterOptions(unfilteredOptions, 'add');
         data = data || {};
@@ -54,8 +40,6 @@ Invite = ghostBookshelf.Model.extend({
         });
 
         return ghostBookshelf.Model.add.call(this, data, options);
-<<<<<<< HEAD
-=======
     },
 
     permissible(inviteModel, action, context, unsafeAttrs, loadedPermissions, hasUserPermission, hasAppPermission, hasApiKeyPermission) {
@@ -110,7 +94,6 @@ Invite = ghostBookshelf.Model.extend({
                     message: common.i18n.t('errors.models.invite.notEnoughPermission')
                 }));
             });
->>>>>>> newversion/master
     }
 });
 

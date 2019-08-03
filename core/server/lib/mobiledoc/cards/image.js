@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-module.exports = {
-=======
 const createCard = require('../create-card');
 
 module.exports = createCard({
->>>>>>> newversion/master
     name: 'image',
     type: 'dom',
     render(opts) {
@@ -17,11 +13,7 @@ module.exports = createCard({
         }
 
         let figure = dom.createElement('figure');
-<<<<<<< HEAD
-        let figureClass = 'kg-image-card';
-=======
         let figureClass = 'kg-card kg-image-card';
->>>>>>> newversion/master
         if (payload.cardWidth) {
             figureClass = `${figureClass} kg-width-${payload.cardWidth}`;
         }
@@ -43,16 +35,9 @@ module.exports = createCard({
             let figcaption = dom.createElement('figcaption');
             figcaption.appendChild(dom.createRawHTMLSection(payload.caption));
             figure.appendChild(figcaption);
-<<<<<<< HEAD
-=======
             figure.setAttribute('class', `${figure.getAttribute('class')} kg-card-hascaption`);
->>>>>>> newversion/master
         }
 
         return figure;
     }
-<<<<<<< HEAD
-};
-=======
 });
->>>>>>> newversion/master

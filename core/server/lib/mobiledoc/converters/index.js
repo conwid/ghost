@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 const common = require('../../common');
 
->>>>>>> newversion/master
 module.exports = {
     get mobiledocConverter() {
         return require('./mobiledoc-converter');
@@ -10,8 +7,6 @@ module.exports = {
 
     get markdownConverter() {
         return require('./markdown-converter');
-<<<<<<< HEAD
-=======
     },
 
     get htmlToMobiledocConverter() {
@@ -28,6 +23,5 @@ module.exports = {
                 });
             };
         }
->>>>>>> newversion/master
     }
 };

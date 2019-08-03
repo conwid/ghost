@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-module.exports = {
-=======
 const createCard = require('../create-card');
 
 module.exports = createCard({
->>>>>>> newversion/master
     name: 'code',
     type: 'dom',
     render(opts) {
@@ -25,11 +21,6 @@ module.exports = createCard({
         code.appendChild(dom.createTextNode(payload.code));
         pre.appendChild(code);
 
-<<<<<<< HEAD
-        return pre;
-    }
-};
-=======
         if (payload.caption) {
             let figure = dom.createElement('figure');
             figure.setAttribute('class', 'kg-card kg-code-card');
@@ -45,4 +36,3 @@ module.exports = createCard({
         }
     }
 });
->>>>>>> newversion/master

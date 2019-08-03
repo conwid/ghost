@@ -53,8 +53,6 @@ module.exports = {
 
                 return {permissions: foundApp.related('permissions').models};
             });
-<<<<<<< HEAD
-=======
     },
 
     apiKey(id) {
@@ -73,6 +71,5 @@ module.exports = {
 
                 return {permissions, roles};
             });
->>>>>>> newversion/master
     }
 };

@@ -3,11 +3,7 @@ const debug = require('ghost-ignition').debug('importer:settings'),
     _ = require('lodash'),
     BaseImporter = require('./base'),
     models = require('../../../../models'),
-<<<<<<< HEAD
-    defaultSettings = require('../../../schema/default-settings.json'),
-=======
     defaultSettings = require('../../../schema').defaultSettings,
->>>>>>> newversion/master
     labsDefaults = JSON.parse(defaultSettings.blog.labs.defaultValue);
 
 class SettingsImporter extends BaseImporter {
@@ -42,8 +38,6 @@ class SettingsImporter extends BaseImporter {
             });
         }
 
-<<<<<<< HEAD
-=======
         const activeApps = _.find(this.dataToImport, {key: 'active_apps'});
         const installedApps = _.find(this.dataToImport, {key: 'installed_apps'});
 
@@ -67,7 +61,6 @@ class SettingsImporter extends BaseImporter {
             return data.key !== 'active_apps' && data.key !== 'installed_apps';
         });
 
->>>>>>> newversion/master
         const permalinks = _.find(this.dataToImport, {key: 'permalinks'});
 
         if (permalinks) {
@@ -98,8 +91,6 @@ class SettingsImporter extends BaseImporter {
             if (obj.key === 'slack') {
                 obj.value = JSON.stringify([{url: ''}]);
             }
-<<<<<<< HEAD
-=======
 
             // CASE: export files might contain "0" or "1" for booleans. Model layer needs real booleans.
             // transform "0" to false
@@ -112,17 +103,13 @@ class SettingsImporter extends BaseImporter {
             if (obj.value === 'false' || obj.value === 'true') {
                 obj.value = obj.value === 'true';
             }
->>>>>>> newversion/master
         });
 
         return super.beforeImport();
     }
 
     generateIdentifier() {
-<<<<<<< HEAD
-=======
         this.stripProperties(['id']);
->>>>>>> newversion/master
         return Promise.resolve();
     }
 

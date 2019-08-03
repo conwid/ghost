@@ -20,10 +20,7 @@ var _ = require('lodash'),
     addFixturesForModel,
     addFixturesForRelation,
     removeFixturesForModel,
-<<<<<<< HEAD
-=======
     removeFixturesForRelation,
->>>>>>> newversion/master
 
     findModelFixtureEntry,
     findModelFixtures,
@@ -255,32 +252,19 @@ findRelationFixture = function findRelationFixture(from, to) {
  * @param {String} objName
  * @returns {Object} fixture relation
  */
-<<<<<<< HEAD
-findPermissionRelationsForObject = function findPermissionRelationsForObject(objName) {
-    // Make a copy and delete any entries we don't want
-    var foundRelation = _.cloneDeep(findRelationFixture('Role', 'Permission'));
-
-    _.each(foundRelation.entries, function (entry, role) {
-=======
 findPermissionRelationsForObject = function findPermissionRelationsForObject(objName, role) {
     // Make a copy and delete any entries we don't want
     var foundRelation = _.cloneDeep(findRelationFixture('Role', 'Permission'));
 
     _.each(foundRelation.entries, function (entry, key) {
->>>>>>> newversion/master
         _.each(entry, function (perm, obj) {
             if (obj !== objName) {
                 delete entry[obj];
             }
         });
 
-<<<<<<< HEAD
-        if (_.isEmpty(entry)) {
-            delete foundRelation.entries[role];
-=======
         if (_.isEmpty(entry) || (role && role !== key)) {
             delete foundRelation.entries[key];
->>>>>>> newversion/master
         }
     });
 
@@ -299,8 +283,6 @@ removeFixturesForModel = function removeFixturesForModel(modelFixture, options) 
     });
 };
 
-<<<<<<< HEAD
-=======
 removeFixturesForRelation = function removeFixturesForRelation(relationFixture, options) {
     return fetchRelationData(relationFixture, options).then(function getRelationOps(data) {
         const ops = [];
@@ -329,7 +311,6 @@ removeFixturesForRelation = function removeFixturesForRelation(relationFixture, 
     });
 };
 
->>>>>>> newversion/master
 module.exports = {
     addFixturesForModel: addFixturesForModel,
     addFixturesForRelation: addFixturesForRelation,
@@ -337,10 +318,6 @@ module.exports = {
     findModelFixtures: findModelFixtures,
     findRelationFixture: findRelationFixture,
     findPermissionRelationsForObject: findPermissionRelationsForObject,
-<<<<<<< HEAD
-    removeFixturesForModel: removeFixturesForModel
-=======
     removeFixturesForModel: removeFixturesForModel,
     removeFixturesForRelation: removeFixturesForRelation
->>>>>>> newversion/master
 };

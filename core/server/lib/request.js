@@ -1,9 +1,6 @@
 var got = require('got'),
     _ = require('lodash'),
     validator = require('../data/validation').validator,
-<<<<<<< HEAD
-    common = require('./common');
-=======
     common = require('./common'),
     ghostVersion = require('./ghost-version');
 
@@ -12,7 +9,6 @@ var defaultOptions = {
         'user-agent': 'Ghost/' + ghostVersion.original + ' (https://github.com/TryGhost/Ghost)'
     }
 };
->>>>>>> newversion/master
 
 module.exports = function request(url, options) {
     if (_.isEmpty(url) || !validator.isURL(url)) {
@@ -23,11 +19,7 @@ module.exports = function request(url, options) {
         }));
     }
 
-<<<<<<< HEAD
-    return got(url, options);
-=======
     var mergedOptions = _.merge({}, defaultOptions, options);
 
     return got(url, mergedOptions);
->>>>>>> newversion/master
 };

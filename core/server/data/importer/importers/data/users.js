@@ -34,11 +34,7 @@ class UsersImporter extends BaseImporter {
 
         // NOTE: sort out duplicated roles based on incremental id
         _.each(this.requiredFromFile.roles_users, (attachedRole) => {
-<<<<<<< HEAD
-            if (lookup.hasOwnProperty(attachedRole.user_id)) {
-=======
             if (Object.prototype.hasOwnProperty.call(lookup, attachedRole.user_id)) {
->>>>>>> newversion/master
                 if (lookup[attachedRole.user_id].id < attachedRole.id) {
                     lookup[attachedRole.user_id] = attachedRole;
                 }

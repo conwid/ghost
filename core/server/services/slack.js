@@ -1,18 +1,12 @@
 var common = require('../lib/common'),
     request = require('../lib/request'),
     imageLib = require('../lib/image'),
-<<<<<<< HEAD
-    urlService = require('../services/url'),
-    settingsCache = require('./settings/cache'),
-    schema = require('../data/schema').checks,
-=======
     urlUtils = require('../lib/url-utils'),
     urlService = require('../../frontend/services/url'),
     settingsCache = require('./settings/cache'),
     schema = require('../data/schema').checks,
     moment = require('moment'),
 
->>>>>>> newversion/master
     defaultPostSlugs = [
         'welcome',
         'the-editor',
@@ -31,37 +25,25 @@ function getSlackSettings() {
 }
 
 function ping(post) {
-<<<<<<< HEAD
-    var message,
-        slackData = {},
-        slackSettings = getSlackSettings();
-=======
     let message,
         title,
         author,
         slackData = {},
         slackSettings = getSlackSettings(),
         blogTitle = settingsCache.get('title');
->>>>>>> newversion/master
 
     // If this is a post, we want to send the link of the post
     if (schema.isPost(post)) {
         message = urlService.getUrlByResourceId(post.id, {absolute: true});
-<<<<<<< HEAD
-=======
         title = post.title ? post.title : null;
         author = post.authors ? post.authors[0] : null;
->>>>>>> newversion/master
     } else {
         message = post.message;
     }
 
     // Quit here if slack integration is not activated
     if (slackSettings && slackSettings.url && slackSettings.url !== '') {
-<<<<<<< HEAD
-=======
         slackSettings.username = slackSettings.username ? slackSettings.username : 'Ghost';
->>>>>>> newversion/master
         // Only ping when not a page
         if (post.page) {
             return;
@@ -75,14 +57,6 @@ function ping(post) {
             return;
         }
 
-<<<<<<< HEAD
-        slackData = {
-            text: message,
-            unfurl_links: true,
-            icon_url: imageLib.blogIcon.getIconUrl(true),
-            username: 'Ghost'
-        };
-=======
         if (schema.isPost(post)) {
             slackData = {
                 // We are handling the case of test notification here by checking
@@ -133,7 +107,6 @@ function ping(post) {
                 username: slackSettings.username
             };
         }
->>>>>>> newversion/master
 
         return request(slackSettings.url, {
             body: JSON.stringify(slackData),
@@ -144,11 +117,7 @@ function ping(post) {
             common.logging.error(new common.errors.GhostError({
                 err: err,
                 context: common.i18n.t('errors.services.ping.requestFailed.error', {service: 'slack'}),
-<<<<<<< HEAD
-                help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://docs.ghost.org'})
-=======
                 help: common.i18n.t('errors.services.ping.requestFailed.help', {url: 'https://ghost.org/docs/'})
->>>>>>> newversion/master
             }));
         });
     }

@@ -4,8 +4,6 @@ var _ = require('lodash'),
     parseContext = require('./parse-context'),
     _private = {};
 
-<<<<<<< HEAD
-=======
 /**
  * @TODO:
  *
@@ -18,7 +16,6 @@ var _ = require('lodash'),
  *
  * - public context cannot fetch draft/scheduled posts
  */
->>>>>>> newversion/master
 _private.applyStatusRules = function applyStatusRules(docName, method, opts) {
     var err = new common.errors.NoPermissionError({message: common.i18n.t('errors.permissions.applyStatusRules.error', {docName: docName})});
 

@@ -3,19 +3,11 @@
         "appRoot": ".",
         "corePath": "core/",
         "clientAssets": "core/built/assets",
-<<<<<<< HEAD
-        "helperTemplates": "core/server/helpers/tpl/",
-        "adminViews": "core/server/web/admin/views/",
-        "defaultViews": "core/server/views/",
-        "defaultSettings": "core/server/services/settings/",
-        "internalAppPath": "core/server/apps/",
-=======
         "helperTemplates": "core/frontend/helpers/tpl/",
         "adminViews": "core/server/web/admin/views/",
         "defaultViews": "core/server/views/",
         "defaultSettings": "core/frontend/services/settings/",
         "internalAppPath": "core/frontend/apps/",
->>>>>>> newversion/master
         "internalStoragePath": "core/server/adapters/storage/",
         "internalSchedulingPath": "core/server/adapters/scheduling/",
         "migrationPath": "core/server/data/migrations",
@@ -41,13 +33,8 @@
             "contentTypes": ["text/csv", "application/csv", "application/octet-stream"]
         },
         "images": {
-<<<<<<< HEAD
-            "extensions": [".jpg", ".jpeg", ".gif", ".png", ".svg", ".svgz"],
-            "contentTypes": ["image/jpeg", "image/png", "image/gif", "image/svg+xml"]
-=======
             "extensions": [".jpg", ".jpeg", ".gif", ".png", ".svg", ".svgz", ".ico"],
             "contentTypes": ["image/jpeg", "image/png", "image/gif", "image/svg+xml", "image/x-icon", "image/vnd.microsoft.icon"]
->>>>>>> newversion/master
         },
         "icons": {
             "extensions": [".png", ".ico"],
@@ -67,11 +54,7 @@
         },
         "routes": {
             "extensions": [".yaml"],
-<<<<<<< HEAD
-            "contentTypes": ["text/plain", "text/yaml", "application/octet-stream", "application/yaml"]
-=======
             "contentTypes": ["text/plain", "text/yaml", "application/octet-stream", "application/yaml", "application/x-yaml"]
->>>>>>> newversion/master
         }
     },
     "times": {
@@ -81,8 +64,6 @@
     },
     "maintenance": {
         "enabled": false
-<<<<<<< HEAD
-=======
     },
     "api": {
         "versions": {
@@ -97,6 +78,5 @@
                 "content": "v0.1"
             }
         }
->>>>>>> newversion/master
     }
 }

@@ -6,11 +6,7 @@ var debug = require('ghost-ignition').debug('server'),
     path = require('path'),
     _ = require('lodash'),
     config = require('./config'),
-<<<<<<< HEAD
-    urlService = require('./services/url'),
-=======
     urlUtils = require('./lib/url-utils'),
->>>>>>> newversion/master
     common = require('./lib/common'),
     moment = require('moment');
 
@@ -49,11 +45,7 @@ GhostServer.prototype.start = function (externalApp) {
         };
 
     return new Promise(function (resolve, reject) {
-<<<<<<< HEAD
-        if (config.get('server').hasOwnProperty('socket')) {
-=======
         if (Object.prototype.hasOwnProperty.call(config.get('server'), 'socket')) {
->>>>>>> newversion/master
             socketConfig = config.get('server').socket;
 
             if (_.isString(socketConfig)) {
@@ -201,11 +193,7 @@ GhostServer.prototype.logStartMessages = function () {
     // Startup & Shutdown messages
     if (config.get('env') === 'production') {
         common.logging.info(common.i18n.t('notices.httpServer.ghostIsRunningIn', {env: config.get('env')}));
-<<<<<<< HEAD
-        common.logging.info(common.i18n.t('notices.httpServer.yourBlogIsAvailableOn', {url: urlService.utils.urlFor('home', true)}));
-=======
         common.logging.info(common.i18n.t('notices.httpServer.yourBlogIsAvailableOn', {url: urlUtils.urlFor('home', true)}));
->>>>>>> newversion/master
         common.logging.info(common.i18n.t('notices.httpServer.ctrlCToShutDown'));
     } else {
         common.logging.info(common.i18n.t('notices.httpServer.ghostIsRunningIn', {env: config.get('env')}));
@@ -213,11 +201,7 @@ GhostServer.prototype.logStartMessages = function () {
             host: config.get('server').socket || config.get('server').host,
             port: config.get('server').port
         }));
-<<<<<<< HEAD
-        common.logging.info(common.i18n.t('notices.httpServer.urlConfiguredAs', {url: urlService.utils.urlFor('home', true)}));
-=======
         common.logging.info(common.i18n.t('notices.httpServer.urlConfiguredAs', {url: urlUtils.urlFor('home', true)}));
->>>>>>> newversion/master
         common.logging.info(common.i18n.t('notices.httpServer.ctrlCToShutDown'));
     }
 
@@ -297,11 +281,7 @@ const connectToBootstrapSocket = (message) => {
             });
 
             client.on('error', (err) => {
-<<<<<<< HEAD
-                common.logging.warn(`Can\'t connect to the bootstrap socket (${socketAddress.host} ${socketAddress.port}) ${err.code}`);
-=======
                 common.logging.warn(`Can't connect to the bootstrap socket (${socketAddress.host} ${socketAddress.port}) ${err.code}`);
->>>>>>> newversion/master
 
                 client.removeAllListeners();
 

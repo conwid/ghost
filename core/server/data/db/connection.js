@@ -11,11 +11,7 @@ function configure(dbConfig) {
     var client = dbConfig.client;
 
     if (client === 'sqlite3') {
-<<<<<<< HEAD
-        dbConfig.useNullAsDefault = dbConfig.hasOwnProperty('useNullAsDefault') ? dbConfig.useNullAsDefault : true;
-=======
         dbConfig.useNullAsDefault = Object.prototype.hasOwnProperty.call(dbConfig, 'useNullAsDefault') ? dbConfig.useNullAsDefault : true;
->>>>>>> newversion/master
     }
 
     if (client === 'mysql') {

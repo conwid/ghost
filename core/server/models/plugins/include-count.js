@@ -26,20 +26,12 @@ module.exports = function (Bookshelf) {
             }
         },
         users: {
-<<<<<<< HEAD
-            posts: function addPostCountToTags(model, options) {
-                model.query('columns', 'users.*', function (qb) {
-                    qb.count('posts.id')
-                        .from('posts')
-                        .whereRaw('posts.author_id = users.id')
-=======
             posts: function addPostCountToUsers(model, options) {
                 model.query('columns', 'users.*', function (qb) {
                     qb.count('posts.id')
                         .from('posts')
                         .join('posts_authors', 'posts.id', 'posts_authors.post_id')
                         .whereRaw('posts_authors.author_id = users.id')
->>>>>>> newversion/master
                         .as('count__posts');
 
                     if (options.context && options.context.public) {
